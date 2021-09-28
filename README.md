@@ -23,7 +23,7 @@ En particulier, les fonctionnalités suivantes seront requises :
   * Voir les membres d'une réunion
   * Réserver une salle
 
-Un **membre** peut être éditer. Il a un nom, un email, une date de naissance. Chaque utilisateur a un identifiant unique (uuid). 
+Un **membre** peut être édité. Il a un nom, un email, une date de naissance. Chaque utilisateur a un identifiant unique (uuid). 
 
 Une **salle de réunion** a un nom, une photo, une capacité et un identifiant unique. Elle peut avoir plus d'attributs ;).
 
