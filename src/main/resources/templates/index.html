@@ -27,6 +27,7 @@
         <th scope="col">Last Name</th>
         <th scope="col">Age</th>
         <th scope="col">Modifier</th>
+        <th scope="col">Supprimer</th>
       </tr>
       </thead>
       <tbody>
@@ -35,6 +36,7 @@
         <td th:text="${user.lastName}"></td>
         <td th:text="${user.age}"></td>
         <td><a th:href="@{/edit/{id}(id=${user.id})}">Edit</a></td>
+        <td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
       </tr>
       </tbody>
     </table>

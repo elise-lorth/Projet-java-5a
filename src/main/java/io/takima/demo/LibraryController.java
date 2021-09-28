@@ -60,4 +60,12 @@ public class LibraryController {
         return ("redirect:/");
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        User user = userDAO.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        userDAO.delete(user);
+        return "redirect:/";
+    }
+
 }
