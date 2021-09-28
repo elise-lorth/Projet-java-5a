@@ -2,12 +2,12 @@ package io.takima.demo;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
+
+import java.util.Optional;
 
 /**
  *
@@ -39,6 +39,25 @@ public class LibraryController {
         attrs.addFlashAttribute("message", "Utilisateur ajouté avec succès");
         userDAO.save(user);
         return new RedirectView("/");
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editUserPage(@PathVariable("id") long id, Model m) {
+            Optional<User> user = userDAO.findById(id);
+
+
+        m.addAttribute("user", user);
+        return "edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editUser(@PathVariable("id") long id, @ModelAttribute User user,BindingResult result, Model m) {
+            if (result.hasErrors()) {
+                user.setId(id);
+                return "update-user";
+            }
+        userDAO.save(user);
+        return ("redirect:/");
     }
 
 }
