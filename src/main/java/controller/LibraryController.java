@@ -1,5 +1,7 @@
-package io.takima.demo;
+package controller;
 
+import DAO.UserDAO;
+import model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,16 +27,22 @@ public class LibraryController {
     @GetMapping
     public String homePage(Model m) {
         m.addAttribute("users", userDAO.findAll());
-        return "index";
+        return "accueilPublic";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/newMember")
     public String addUserPage(Model m) {
         m.addAttribute("user", new User());
-        return "new";
+        return "newMember";
     }
 
-    @PostMapping("/new")
+    @GetMapping("/newRoom")
+    public String addRoomPage(Model m) {
+        m.addAttribute("user", new User());
+        return "newRoom";
+    }
+
+    @PostMapping("/newMember")
     public RedirectView createNewUser(@ModelAttribute User user, RedirectAttributes attrs) {
         attrs.addFlashAttribute("message", "Utilisateur ajouté avec succès");
         userDAO.save(user);
