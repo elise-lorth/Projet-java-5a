@@ -15,7 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.util.Optional;
 
 @Controller
-@RequestMapping(path = "/editMember")
+@RequestMapping(path = "")
 public class EditController {
 
     private final UserDAO userDAO;
@@ -31,14 +31,14 @@ public class EditController {
         this.jointureDAO = jointureDAO;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/editMember/{id}")
     public String editUserPage(@PathVariable("id") long id, Model m) {
         Optional<User> user = userDAO.findById(id);
         m.addAttribute("user", user);
         return "editMember";
     }
 
-    @PostMapping("/{id}")
+    @PostMapping("/editMember/{id}")
     public RedirectView editUser(@PathVariable("id") long id, @ModelAttribute User user, BindingResult result, Model m) {
 //        if (result.hasErrors()) {
 //            user.setId(id);
@@ -48,15 +48,15 @@ public class EditController {
         return new RedirectView("/accueilAdmin");
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/editRoom/{id}")
     public String editRoomPage(@PathVariable("id") long id, Model m) {
         Optional<Room> room = roomDAO.findById(id);
         m.addAttribute("room", room);
         return "editRoom";
     }
 
-    @PostMapping("/{id}")
-    public RedirectView editUser(@PathVariable("id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
+    @PostMapping("/editRoom/{id}")
+    public RedirectView editRoom(@PathVariable("id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
 //        if (result.hasErrors()) {
 //            user.setId(id);
 //            return "update-user";

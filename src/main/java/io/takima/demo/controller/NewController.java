@@ -6,13 +6,17 @@ import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
 import io.takima.demo.Room;
 import io.takima.demo.model.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+@Controller
+@RequestMapping(path = "")
 public class NewController {
 
     private final UserDAO userDAO;

@@ -6,11 +6,15 @@ import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
 import io.takima.demo.Room;
 import io.takima.demo.model.User;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.RedirectView;
 
+@Controller
+@RequestMapping(path = "")
 public class DeleteController {
 
     private final UserDAO userDAO;
