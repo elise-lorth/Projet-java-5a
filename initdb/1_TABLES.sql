@@ -5,7 +5,8 @@ create table users
         primary key (id),
     first_name TEXT not null,
     last_name TEXT not null,
-    age int null
+    age int null,
+    email TEXT null
 );
 create table rooms
 (
@@ -16,7 +17,8 @@ create table rooms
     capacity int not null,
     screen bool not null,
     tablet bool not null,
-    board bool not null
+    board bool not null,
+    icon TEXT null,
 );
 create table reservations
 (
@@ -25,8 +27,8 @@ create table reservations
         primary key (reservation_id),
     room bigint,
     constraint foreign key (room) REFERENCES rooms (room_id) ON DELETE CASCADE,
-    start_date date not null,
-    end_date date not null
+    start_date datetime not null,
+    end_date datetime not null
 );
 
 create table jointures

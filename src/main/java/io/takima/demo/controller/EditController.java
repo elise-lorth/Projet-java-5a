@@ -4,7 +4,7 @@ import io.takima.demo.DAO.JointureDAO;
 import io.takima.demo.DAO.ReservationDAO;
 import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
-import io.takima.demo.Room;
+import io.takima.demo.model.Room;
 import io.takima.demo.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package io.takima.demo
+package io.takima.demo.model
 
 import java.math.BigInteger
 import java.util.*

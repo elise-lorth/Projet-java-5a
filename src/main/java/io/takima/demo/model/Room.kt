@@ -1,4 +1,4 @@
-package io.takima.demo;
+package io.takima.demo.model;
 
 import javax.persistence.*;
 
@@ -11,6 +11,7 @@ data class Room (
         @Column(name = "capacity") var capacity: Int?,
         @Column(name = "screen") var screen: Boolean?,
         @Column(name = "tablet") var tablet: Boolean?,
-        @Column(name = "board") var board: Boolean?) {
-    constructor() :this(null, null, null, false, false, false)
+        @Column(name = "board") var board: Boolean?,
+        @Column(name="icon") var icon: String?) {
+    constructor() :this(null, null, null, false, false, false, null)
 }
