@@ -73,33 +73,4 @@ public class LibraryController {
         userDAO.delete(user);
         return new RedirectView("/accueilAdmin");
     }
-
-
-    @GetMapping("/edit/{id}")
-    public String editUserPage(@PathVariable("id") long id, Model m) {
-            Optional<User> user = userDAO.findById(id);
-
-
-        m.addAttribute("user", user);
-        return "edit";
-    }
-
-    @PostMapping("/edit/{id}")
-    public String editUser(@PathVariable("id") long id, @ModelAttribute User user,BindingResult result, Model m) {
-            if (result.hasErrors()) {
-                user.setId(id);
-                return "update-user";
-            }
-        userDAO.save(user);
-        return ("redirect:/");
-    }
-
-    @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id, Model model) {
-        User user = userDAO.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        userDAO.delete(user);
-        return "redirect:/";
-    }
-
 }
