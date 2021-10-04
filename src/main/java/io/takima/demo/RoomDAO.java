@@ -10,4 +10,3 @@ import org.springframework.stereotype.Repository;
 public interface RoomDAO extends CrudRepository<Room, Long> {
 
 }
-
