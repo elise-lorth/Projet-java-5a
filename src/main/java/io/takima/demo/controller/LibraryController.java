@@ -28,6 +28,7 @@ public class LibraryController {
         m.addAttribute("users", userDAO.findAll());
         return "accueilPublic";
     }
+
     @GetMapping("/accueilPublic")
     public String PublicPage(Model m) {
         m.addAttribute("users", userDAO.findAll());
