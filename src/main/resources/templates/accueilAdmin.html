@@ -6,7 +6,7 @@
 </head>
 
 <body style="background-color: #bd798f; color: floralwhite;">
-<header th:insert="fragments/fragments.html :: headerAdmin"> </header>
+<header th:insert="fragments/fragments.html :: headerAdmin"></header>
 
 <h2>Salles disponibles actuellement : </h2>
 <p>Un splendide affichage des salles disponibles (liste ?)</p>
@@ -37,6 +37,8 @@
             <th scope="col">Prenom</th>
             <th scope="col">Nom</th>
             <th scope="col">Age</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
         </tr>
         </thead>
         <tbody>
@@ -44,13 +46,14 @@
             <td scope="row" th:text="${user.firstName}"></td>
             <td th:text="${user.lastName}"></td>
             <td th:text="${user.age}"></td>
+            <td><a th:href="@{/editMember/{id}(id=${user.id})}">Edit</a></td>
+            <td><a th:href="@{/deleteMember/{id}(id=${user.id})}">Delete</a></td>
         </tr>
         </tbody>
     </table>
 </div>
-
 </br></br></br></br></br></br>
-<footer th:insert="fragments/fragments.html :: footer"> </footer>
+<footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
 
 </html>
