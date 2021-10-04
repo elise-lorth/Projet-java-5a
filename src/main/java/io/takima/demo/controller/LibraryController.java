@@ -28,6 +28,7 @@ public class LibraryController {
         m.addAttribute("users", userDAO.findAll());
         return "accueilPublic";
     }
+
     @GetMapping("/accueilPublic")
     public String PublicPage(Model m) {
         m.addAttribute("users", userDAO.findAll());
@@ -73,3 +74,4 @@ public class LibraryController {
         userDAO.delete(user);
         return new RedirectView("/accueilAdmin");
     }
+}
