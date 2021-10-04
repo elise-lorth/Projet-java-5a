@@ -1,6 +1,10 @@
 package io.takima.demo.controller;
 
+import io.takima.demo.DAO.JointureDAO;
+import io.takima.demo.DAO.ReservationDAO;
+import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
+import io.takima.demo.Room;
 import io.takima.demo.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,60 +22,45 @@ import java.util.Optional;
 public class LibraryController {
 
     private final UserDAO userDAO;
+    private final RoomDAO roomDAO;
+    private final ReservationDAO reservationDAO;
+    private final JointureDAO jointureDAO;
 
-    public LibraryController(UserDAO userDAO) {
+    public LibraryController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO)
+    {
         this.userDAO = userDAO;
+        this.roomDAO = roomDAO;
+        this.reservationDAO = reservationDAO;
+        this.jointureDAO = jointureDAO;
     }
 
     @GetMapping
     public String homePage(Model m) {
         m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("rooms", roomDAO.findAll());
         return "accueilPublic";
     }
 
     @GetMapping("/accueilPublic")
     public String PublicPage(Model m) {
         m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("rooms", roomDAO.findAll());
         return "accueilPublic";
     }
 
     @GetMapping("/accueilAdmin")
     public String AdminPage(Model m) {
         m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("rooms", roomDAO.findAll());
         return "accueilAdmin";
     }
 
-    @GetMapping("/newMember")
-    public String addUserPage(Model m) {
-        m.addAttribute("user", new User());
-        return "newMember";
-    }
-
-    @GetMapping("/newRoom")
-    public String addRoomPage(Model m) {
-        m.addAttribute("user", new User());
-        return "newRoom";
-    }
-
-    @GetMapping("/reservation")
-    public String addReservationPage(Model m) {
-        m.addAttribute("user", new User());
-        return "reservation";
-    }
-
-    @PostMapping("/newMember")
-    public RedirectView createNewUser(@ModelAttribute User user, RedirectAttributes attrs) {
-        attrs.addFlashAttribute("message", "Utilisateur ajouté avec succès");
-        userDAO.save(user);
-        return new RedirectView("/accueilAdmin");
-    }
 
 
-    @GetMapping("/deleteMember/{id}")
-    public RedirectView deleteUser(@PathVariable("id") long id, Model model) {
-        User user = userDAO.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-        userDAO.delete(user);
-        return new RedirectView("/accueilAdmin");
-    }
+
+
+
+
+
+
 }

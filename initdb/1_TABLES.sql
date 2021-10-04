@@ -18,13 +18,24 @@ create table rooms
     tablet bool not null,
     board bool not null
 );
-create table meetup
+create table reservations
 (
-    meetup_id bigint,
+    reservation_id bigint auto_increment,
+    constraint reservation_pk
+        primary key (reservation_id),
     room bigint,
     constraint foreign key (room) REFERENCES rooms (room_id) ON DELETE CASCADE,
     start_date date not null,
-    end_date date not null,
-    member bigint,
-    constraint foreign key (member) REFERENCES users (id) ON DELETE CASCADE
+    end_date date not null
+);
+
+create table jointures
+(
+  jointure_id bigint auto_increment,
+  constraint jointure_pk
+    primary key (jointure_id),
+  user bigint,
+  constraint foreign key (user) REFERENCES users (id) ON DELETE CASCADE,
+  reservation bigint,
+  constraint foreign key (reservation) REFERENCES reservations (reservation_id) ON DELETE CASCADE
 );

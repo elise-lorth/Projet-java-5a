@@ -1,6 +1,10 @@
 package io.takima.demo.controller;
 
+import io.takima.demo.DAO.JointureDAO;
+import io.takima.demo.DAO.ReservationDAO;
+import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
+import io.takima.demo.Room;
 import io.takima.demo.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,9 +19,16 @@ import java.util.Optional;
 public class EditController {
 
     private final UserDAO userDAO;
+    private final RoomDAO roomDAO;
+    private final ReservationDAO reservationDAO;
+    private final JointureDAO jointureDAO;
 
-    public EditController(UserDAO userDAO) {
+    public EditController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO)
+    {
         this.userDAO = userDAO;
+        this.roomDAO = roomDAO;
+        this.reservationDAO = reservationDAO;
+        this.jointureDAO = jointureDAO;
     }
 
     @GetMapping("/{id}")
@@ -36,4 +47,23 @@ public class EditController {
         userDAO.save(user);
         return new RedirectView("/accueilAdmin");
     }
+
+    @GetMapping("/{id}")
+    public String editRoomPage(@PathVariable("id") long id, Model m) {
+        Optional<Room> room = roomDAO.findById(id);
+        m.addAttribute("room", room);
+        return "editRoom";
+    }
+
+    @PostMapping("/{id}")
+    public RedirectView editUser(@PathVariable("id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
+//        if (result.hasErrors()) {
+//            user.setId(id);
+//            return "update-user";
+//        }
+        roomDAO.save(room);
+        return new RedirectView("/accueilAdmin");
+    }
+
+
 }
