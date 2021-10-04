@@ -1,6 +1,6 @@
-package DAO;
+package io.takima.demo.DAO;
 
-import model.User;
+import io.takima.demo.model.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

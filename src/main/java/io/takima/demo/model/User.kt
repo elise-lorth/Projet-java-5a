@@ -1,4 +1,4 @@
-package model
+package io.takima.demo.model
 
 import javax.persistence.*
 

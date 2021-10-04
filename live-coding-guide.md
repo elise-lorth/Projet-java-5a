@@ -40,8 +40,8 @@ Ce guide est fait pour l'enseignant
  * Si on remplaçait notre CLI par une page web?
  * Supprimer le CLI, créer une classe UserLibraryController
  * Faire un HelloWorld avec GetMapping et ResponseBody
- * Ajouter le DAO et faire la liste d'utilisateurs (juste en toString())
- * Faire une boucle pour afficher ça de manière jolie (en écrivant de l'HTML dans le controller)
+ * Ajouter le io.takima.demo.DAO et faire la liste d'utilisateurs (juste en toString())
+ * Faire une boucle pour afficher ça de manière jolie (en écrivant de l'HTML dans le io.takima.demo.controller)
  
 ### Thymeleaf
  * Ajouter Thymeleaf et faire une belle page HelloWorld dynamique (app.props : spring.thymeleaf.cache=false)
@@ -72,7 +72,7 @@ Ce guide est fait pour l'enseignant
 ### Ajouter un user
  * Ajouter une barre de boutons au dessus à droite du tableau
  * Créer la page new avec un form bootstrap (`tlform`)
- * Créer la méthode GET dans le controller
+ * Créer la méthode GET dans le io.takima.demo.controller
  * Ajouter la partie thymeleaf `<form action="#" th:action="@{/new}" th:object="${user}" method="post">` et `th:field="*{firstName}"` sur chaque input (`tlfieldtext`)
  * Ajouter la méthode `public RedirectView createNewUser(@ModelAttribute User user, RedirectAttributes attrs)`
  * Utiliser un flash attribute
@@ -83,7 +83,7 @@ Ce guide est fait pour l'enseignant
  * Ajouter le driver JDBC
  * Lancer le container
  * Le connecter à IntelliJ
- * Remplacer l'ancien DAO par un DAO avec JDBC + mapping
+ * Remplacer l'ancien io.takima.demo.DAO par un io.takima.demo.DAO avec JDBC + mapping
  * Voir que cela marche
  
 ### Hibernate 

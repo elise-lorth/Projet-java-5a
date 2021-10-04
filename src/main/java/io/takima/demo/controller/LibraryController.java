@@ -1,7 +1,7 @@
-package controller;
+package io.takima.demo.controller;
 
-import DAO.UserDAO;
-import model.User;
+import io.takima.demo.DAO.UserDAO;
+import io.takima.demo.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +14,8 @@ import org.springframework.web.servlet.view.RedirectView;
 /**
  *
  */
-@RequestMapping("/")
 @Controller
+@RequestMapping(name = "test")
 public class LibraryController {
 
     private final UserDAO userDAO;
@@ -29,6 +29,11 @@ public class LibraryController {
         m.addAttribute("users", userDAO.findAll());
         return "accueilPublic";
     }
+    @GetMapping("/accueilAdmin")
+    public String AdminPage(Model m) {
+        m.addAttribute("users", userDAO.findAll());
+        return "accueilAdmin";
+    }
 
     @GetMapping("/newMember")
     public String addUserPage(Model m) {
@@ -40,6 +45,12 @@ public class LibraryController {
     public String addRoomPage(Model m) {
         m.addAttribute("user", new User());
         return "newRoom";
+    }
+
+    @GetMapping("/reservation")
+    public String addReservationPage(Model m) {
+        m.addAttribute("user", new User());
+        return "reservation";
     }
 
     @PostMapping("/newMember")
