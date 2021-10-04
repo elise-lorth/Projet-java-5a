@@ -73,4 +73,3 @@ public class LibraryController {
         userDAO.delete(user);
         return new RedirectView("/accueilAdmin");
     }
-}
