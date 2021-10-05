@@ -15,10 +15,10 @@ create table rooms
         primary key (room_id),
     name TEXT not null,
     capacity int not null,
-    screen bool not null,
-    tablet bool not null,
-    board bool not null,
-    icon TEXT null,
+    screen TEXT not null,
+    tablet TEXT not null,
+    board TEXT not null,
+    icon TEXT null
 );
 create table reservations
 (
