@@ -19,6 +19,8 @@
     </br>
 </header>
 
+<h2>Ajoutez un nouveaux membre</h2>
+
 <div class="container">
     <form method="post" th:action="@{/editMember/{id}(id=${id})}" th:object="${user}">
         <div class="form-group">
@@ -41,7 +43,7 @@
             <small id="ageHelp" class="form-text text-muted">We wont force you to give us your age. Especially if you're
                 ashamed to be old.</small>
         </div>
-        <button type="submit" class="button right">Ajouter</button>
+        <button type="submit" class="button right">Sauvegarder les modifications</button>
     </form>
 </div>
 

@@ -32,10 +32,10 @@ public class EditController {
     }
 
     @GetMapping("/editMember/{id}")
-    public RedirectView editUserPage(@PathVariable("id") long id, Model m) {
+    public String editUserPage(@PathVariable("id") long id, Model m) {
         Optional<User> user = userDAO.findById(id);
         m.addAttribute("user", user);
-        return new RedirectView("/accueilAdmin");
+        return "editMember";
     }
 
     @PostMapping("/editMember/{id}")
@@ -44,18 +44,17 @@ public class EditController {
         return new RedirectView("/accueilAdmin");
     }
 
-    @GetMapping("/editRoom/{id}")
-    public RedirectView editRoomPage(@PathVariable("id") long id, Model m) {
-        Optional<Room> room = roomDAO.findById(id);
+    @GetMapping("/editRoom/{room_id}")
+    public String editRoomPage(@PathVariable("room_id") long room_id, Model m) {
+        Optional<Room> room = roomDAO.findById(room_id);
+        System.out.println(room);
         m.addAttribute("room", room);
-        return new RedirectView("/accueilAdmin");
+        return "/editRoom";
     }
 
-    @PostMapping("/editRoom/{id}")
-    public RedirectView editRoom(@PathVariable("id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
+    @PostMapping("/editRoom/{room_id}")
+    public RedirectView editRoom(@PathVariable("room_id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
         roomDAO.save(room);
         return new RedirectView("/accueilAdmin");
     }
-
-
 }

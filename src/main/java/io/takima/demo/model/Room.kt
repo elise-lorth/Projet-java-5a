@@ -4,15 +4,14 @@ import javax.persistence.*;
 
 @Entity(name = "rooms")
 data class Room(
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id var room_id: Long?,
     @Column(name = "name") var name: String?,
     @Column(name = "capacity") var capacity: Int?,
-    @Column(name = "screen") var screen: Boolean?,
-    @Column(name = "tablet") var tablet: Boolean?,
-    @Column(name = "board") var board: Boolean?,
+    @Column(name = "screen") var screen: Int?,
+    @Column(name = "tablet") var tablet: Int?,
+    @Column(name = "board") var board: Int?,
     @Column(name = "icon") var icon: String?
 ) {
-    constructor() : this(null, null, null, false, false, false, null)
+    constructor() : this(null, null, null, null, null,  null, null)
 }

@@ -9,5 +9,5 @@ INSERT INTO defaultdb.users (id, first_name, last_name, age) VALUES (8, 'Gisèle
 INSERT INTO defaultdb.users (id, first_name, last_name, age) VALUES (9, 'Thomas', 'Ouaque', null);
 INSERT INTO defaultdb.users (id, first_name, last_name, age) VALUES (10, 'Sacha', 'Telfrize', 23);
 
-INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Rome',4,TRUE,TRUE,FALSE,'images/coliseum.png');
-INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Paris',6,TRUE,TRUE,FALSE,'images/eiffel-tower.png');
+INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Rome',4,'0','1','1','images/coliseum.png');
+INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Paris',6,'2','2','1','images/eiffel-tower.png');

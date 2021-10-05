@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" th:href="@{../css/fragments.css}" type="text/css" media="all" href="../css/fragments.css"/>
@@ -8,7 +9,7 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #bd798f;    color: floralwhite;">
+<body style="background-color: #bd798f; color: floralwhite;">
 <header>
     <img class="topleft"
          src="data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA0OTcgNDk3IiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDQ5NyA0OTciIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PHBhdGggZD0ibTM3NS45MjIgMTU1LjQwNS00Ljk3Mi00NC4zNzNjLTYuOTg3LTYyLjM1MS01OS43MDktMTA5LjQ5NS0xMjIuNDUtMTA5LjQ5NS02Mi43NDEgMC0xMTUuNDYzIDQ3LjE0NS0xMjIuNDUgMTA5LjQ5NWwtNC45NzIgNDQuMzczYy04LjUxNSA3NS45OTMgNTAuOTU0IDE0Mi40OTggMTI3LjQyMiAxNDIuNDk4IDc2LjQ2OCAwIDEzNS45MzgtNjYuNTA2IDEyNy40MjItMTQyLjQ5OHoiIGZpbGw9IiNiMDhiZDciLz48cGF0aCBkPSJtMjQxLjM0MyAzMzQuMTM0IDQuOTcyLTQ0LjM3M2M2Ljk4Ny02Mi4zNTEgNTkuNzA5LTEwOS40OTUgMTIyLjQ1LTEwOS40OTUgNjIuNzQxIDAgMTE1LjQ2MyA0Ny4xNDUgMTIyLjQ1IDEwOS40OTVsNC45NzIgNDQuMzczYzguNTE1IDc1Ljk5My01MC45NTQgMTQyLjQ5OC0xMjcuNDIyIDE0Mi40OTgtNzYuNDY4LS4wMDEtMTM1LjkzOC02Ni41MDYtMTI3LjQyMi0xNDIuNDk4eiIgZmlsbD0iIzgwZGZiNSIvPjxwYXRoIGQ9Im0xNjEuMDIzIDEzOS43MzhjMC01MC4wNDggMTguNzY1LTk2LjA2MiA1MC4xNjctMTMyLjQzNC00NS4yNzMgMTQuMzgtNzkuNTk4IDU0LjI2Ny04NS4xNDEgMTAzLjcyOGwtNC45NzIgNDQuMzczYy04LjA3NSA3Mi4wNjMgNDQuOTg4IDEzNS41ODQgMTE1LjcwNCAxNDEuOTYyLTQ2LjU0NC0zOC45ODktNzUuNzU4LTk1LjE3MS03NS43NTgtMTU3LjYyOXoiIGZpbGw9IiNhNDdjZDEiLz48cGF0aCBkPSJtMjc4LjE2NiAzMjMuNjU2YzAtNTAuMTg0IDE1LjI4LTk2LjM1MSA0MC44ODctMTMyLjkzNy0zOS4wNDEgMTcuMjM0LTY3LjcxNSA1NC4yMDctNzIuNzM5IDk5LjA0MmwtNC45NzIgNDQuMzczYy02Ljk5NiA2Mi40MzggMzEuOTA3IDExOC40NjEgODguNDIgMTM2LjQ2My0zMS45OTYtMzguNDQ1LTUxLjU5Ni05MC4xMTQtNTEuNTk2LTE0Ni45NDF6IiBmaWxsPSIjMzZkMzlhIi8+PHBhdGggZD0ibTI1NS42NTcgMzM0LjEzNC00Ljk3Mi00NC4zNzNjLTYuOTg3LTYyLjM1MS01OS43MDktMTA5LjQ5NS0xMjIuNDUtMTA5LjQ5NS02Mi43NDEgMC0xMTUuNDYzIDQ3LjE0NS0xMjIuNDUgMTA5LjQ5NWwtNC45NzIgNDQuMzczYy04LjUxNSA3NS45OTMgNTAuOTU0IDE0Mi40OTggMTI3LjQyMiAxNDIuNDk4IDc2LjQ2OC0uMDAxIDEzNS45MzgtNjYuNTA2IDEyNy40MjItMTQyLjQ5OHoiIGZpbGw9IiM2NGQxZTEiLz48cGF0aCBkPSJtOTIuMDE1IDMyNS4yNjVjLS4xNTctMS4xNDQtLjI0MS0yLjMwOS0uMjQxLTMuNDk1IDAtMTYuODY2IDE2LjMyLTMwLjU0MSAzNi40NjEtMzAuNTQxczM2LjQ2MSAxMy42NzUgMzYuNDYxIDMwLjU0MWMwIDEuMTg2LS4wODQgMi4zNTEtLjI0MSAzLjQ5NXoiIGZpbGw9IiNmOWQ4ODgiLz48Zz48Zz48cGF0aCBkPSJtNjIuNjkzIDMwOS45NDNjLTQuMTQyIDAtNy41LTMuMzU4LTcuNS03LjV2LTEyLjU5NGMwLTQuMTQyIDMuMzU4LTcuNSA3LjUtNy41czcuNSAzLjM1OCA3LjUgNy41djEyLjU5NGMwIDQuMTQyLTMuMzU4IDcuNS03LjUgNy41eiIgZmlsbD0iIzQyM2U0ZiIvPjwvZz48Zz48cGF0aCBkPSJtMTkzLjc3NiAzMDkuOTQzYy00LjE0MyAwLTcuNS0zLjM1OC03LjUtNy41di0xMi41OTRjMC00LjE0MiAzLjM1Ny03LjUgNy41LTcuNXM3LjUgMy4zNTggNy41IDcuNXYxMi41OTRjMCA0LjE0Mi0zLjM1NyA3LjUtNy41IDcuNXoiIGZpbGw9IiM0MjNlNGYiLz48L2c+PC9nPjxwYXRoIGQ9Im0zMy40MjEgMzI5LjIzM2MwLTU4LjE2OCAyNy4yNDItMTEwLjQ1MiA3MC41NzMtMTQ2LjU2OC01MS42MjIgMTAuMzIxLTkyLjE0NSA1Mi45NzctOTguMjEgMTA3LjA5NmwtNC45NzIgNDQuMzczYy03LjUwMiA2Ni45NDkgMzcuNzY2IDEyNi41MjMgMTAwLjkzMyAxMzkuNzU4LTQyLjAxOS0zNi4wMzgtNjguMzI0LTg3LjUwNi02OC4zMjQtMTQ0LjY1OXoiIGZpbGw9IiMwMGM4ZGUiLz48cGF0aCBkPSJtMTEwLjk0OCA0NjkuMzc3LTEuNDk4LTYuOTA1Yy0zLjExMy0xNC4zNS0xNS44MDktMjQuNTg4LTMwLjQ5My0yNC41ODgtMTQuNjg0IDAtMjcuMzggMTAuMjM4LTMwLjQ5MyAyNC41ODhsLTEuNDk4IDYuOTA1Yy0yLjkwOSAxMy40MTMgNy4zMSAyNi4wODYgMjEuMDM1IDI2LjA4NmgyMS45MTFjMTMuNzI3IDAgMjMuOTQ1LTEyLjY3MyAyMS4wMzYtMjYuMDg2eiIgZmlsbD0iI2Y5ZDg4OCIvPjxwYXRoIGQ9Im0xNDUuNTIgNDY5LjM3NyAxLjQ5OC02LjkwNWMzLjExMy0xNC4zNSAxNS44MDktMjQuNTg4IDMwLjQ5My0yNC41ODggMTQuNjg0IDAgMjcuMzggMTAuMjM4IDMwLjQ5MyAyNC41ODhsMS40OTggNi45MDVjMi45MDkgMTMuNDEzLTcuMzEgMjYuMDg2LTIxLjAzNSAyNi4wODZoLTIxLjkxMWMtMTMuNzI2IDAtMjMuOTQ1LTEyLjY3My0yMS4wMzYtMjYuMDg2eiIgZmlsbD0iI2Y5ZDg4OCIvPjxwYXRoIGQ9Im0yMTIuMjggMTQ2LjUzN2MtLjE1Ny0xLjE0NC0uMjQxLTIuMzA5LS4yNDEtMy40OTUgMC0xNi44NjYgMTYuMzItMzAuNTQxIDM2LjQ2MS0zMC41NDFzMzYuNDYxIDEzLjY3NSAzNi40NjEgMzAuNTQxYzAgMS4xODYtLjA4NCAyLjM1MS0uMjQxIDMuNDk1eiIgZmlsbD0iI2Y5ZDg4OCIvPjxnPjxnPjxwYXRoIGQ9Im0xODIuOTU4IDEzMS4yMTRjLTQuMTQzIDAtNy41LTMuMzU4LTcuNS03LjV2LTEyLjU5NGMwLTQuMTQyIDMuMzU3LTcuNSA3LjUtNy41czcuNSAzLjM1OCA3LjUgNy41djEyLjU5NGMwIDQuMTQyLTMuMzU4IDcuNS03LjUgNy41eiIgZmlsbD0iIzQyM2U0ZiIvPjwvZz48Zz48cGF0aCBkPSJtMzE0LjA0MSAxMzEuMjE0Yy00LjE0MyAwLTcuNS0zLjM1OC03LjUtNy41di0xMi41OTRjMC00LjE0MiAzLjM1Ny03LjUgNy41LTcuNXM3LjUgMy4zNTggNy41IDcuNXYxMi41OTRjMCA0LjE0Mi0zLjM1OCA3LjUtNy41IDcuNXoiIGZpbGw9IiM0MjNlNGYiLz48L2c+PC9nPjxwYXRoIGQ9Im00MDQuOTg1IDMyNS4yNjVjLjE1Ny0xLjE0NC4yNDEtMi4zMDkuMjQxLTMuNDk1IDAtMTYuODY2LTE2LjMyLTMwLjU0MS0zNi40NjEtMzAuNTQxcy0zNi40NjEgMTMuNjc1LTM2LjQ2MSAzMC41NDFjMCAxLjE4Ni4wODQgMi4zNTEuMjQxIDMuNDk1eiIgZmlsbD0iI2Y5ZDg4OCIvPjxnPjxnPjxwYXRoIGQ9Im00MzQuMzA3IDMwOS45NDNjLTQuMTQzIDAtNy41LTMuMzU4LTcuNS03LjV2LTEyLjU5NGMwLTQuMTQyIDMuMzU3LTcuNSA3LjUtNy41czcuNSAzLjM1OCA3LjUgNy41djEyLjU5NGMwIDQuMTQyLTMuMzU3IDcuNS03LjUgNy41eiIgZmlsbD0iIzQyM2U0ZiIvPjwvZz48Zz48cGF0aCBkPSJtMzAzLjIyMyAzMDkuOTQzYy00LjE0MyAwLTcuNS0zLjM1OC03LjUtNy41di0xMi41OTRjMC00LjE0MiAzLjM1Ny03LjUgNy41LTcuNXM3LjUgMy4zNTggNy41IDcuNXYxMi41OTRjMCA0LjE0Mi0zLjM1NyA3LjUtNy41IDcuNXoiIGZpbGw9IiM0MjNlNGYiLz48L2c+PC9nPjxwYXRoIGQ9Im0zODYuMDUyIDQ2OS4zNzcgMS40OTgtNi45MDVjMy4xMTMtMTQuMzUgMTUuODA5LTI0LjU4OCAzMC40OTMtMjQuNTg4IDE0LjY4NCAwIDI3LjM4IDEwLjIzOCAzMC40OTMgMjQuNTg4bDEuNDk4IDYuOTA1YzIuOTA5IDEzLjQxMy03LjMxIDI2LjA4Ni0yMS4wMzUgMjYuMDg2aC0yMS45MTFjLTEzLjcyNyAwLTIzLjk0NS0xMi42NzMtMjEuMDM2LTI2LjA4NnoiIGZpbGw9IiNmOWQ4ODgiLz48cGF0aCBkPSJtMzUxLjQ4IDQ2OS4zNzctMS40OTgtNi45MDVjLTMuMTEzLTE0LjM1LTE1LjgwOS0yNC41ODgtMzAuNDkzLTI0LjU4OC0xNC42ODQgMC0yNy4zOCAxMC4yMzgtMzAuNDkzIDI0LjU4OGwtMS40OTggNi45MDVjLTIuOTA5IDEzLjQxMyA3LjMxIDI2LjA4NiAyMS4wMzUgMjYuMDg2aDIxLjkxMWMxMy43MjYgMCAyMy45NDUtMTIuNjczIDIxLjAzNi0yNi4wODZ6IiBmaWxsPSIjZjlkODg4Ii8+PGcgZmlsbD0iI2Y1Yzk1NiI+PHBhdGggZD0ibTE2NC40NTQgMzI1LjI2NWMtMi4wNTcgMTUuMjI5LTE3LjQ4NSAyNy4wNTctMzYuMjE5IDI3LjA1N3MtMzQuMTYyLTExLjgyOC0zNi4yMTktMjcuMDU3YzEwLjY3NC0xLjIxNyAyMy4wMzctMS45MSAzNi4yMTktMS45MXMyNS41NDUuNjkzIDM2LjIxOSAxLjkxeiIvPjxwYXRoIGQ9Im0yODQuNzE4IDE0Ni41MzdjLTIuMDU3IDE1LjIyOS0xNy40ODUgMjcuMDU3LTM2LjIxOSAyNy4wNTdzLTM0LjE2Mi0xMS44MjgtMzYuMjE5LTI3LjA1N2MxMC42NzQtMS4yMTcgMjMuMDM3LTEuOTEgMzYuMjE5LTEuOTFzMjUuNTQ2LjY5MiAzNi4yMTkgMS45MXoiLz48cGF0aCBkPSJtMzMyLjU0NiAzMjUuMjY1YzIuMDU3IDE1LjIyOSAxNy40ODUgMjcuMDU3IDM2LjIxOSAyNy4wNTdzMzQuMTYyLTExLjgyOCAzNi4yMTktMjcuMDU3Yy0xMC42NzQtMS4yMTctMjMuMDM3LTEuOTEtMzYuMjE5LTEuOTFzLTI1LjU0NS42OTMtMzYuMjE5IDEuOTF6Ii8+PHBhdGggZD0ibTY2LjcwOCA0NTYuNTUyYzAtNi4xNDcgMS4wOTctMTEuOTkgMy4wNjItMTcuMjg2LTEwLjU0NyAzLjI1LTE4Ljg2NiAxMS45NjYtMjEuMzA0IDIzLjIwNmwtMS40OTggNi45MDRjLTIuOTA5IDEzLjQxMyA3LjMxIDI2LjA4NiAyMS4wMzUgMjYuMDg2aDE5LjM5NGMtMTIuMjQ5LTcuMDIyLTIwLjY4OS0yMS44MDUtMjAuNjg5LTM4LjkxeiIvPjxwYXRoIGQ9Im0zMDUuNjU5IDQ1Ni41NTJjMC01LjkwNSAxLjAwOS0xMS41MzIgMi44My0xNi42Ni05LjY4IDMuNjUtMTcuMTk2IDExLjk5My0xOS40OTIgMjIuNTgxbC0xLjQ5OCA2LjkwNGMtMi45MDkgMTMuNDEzIDcuMzEgMjYuMDg2IDIxLjAzNSAyNi4wODZoMTcuODEzYy0xMi4yNDgtNy4wMjMtMjAuNjg4LTIxLjgwNi0yMC42ODgtMzguOTExeiIvPjwvZz48L2c+PC9zdmc+"/>
@@ -19,33 +20,69 @@
     </br>
 </header>
 
+<h2>Ajoutez une nouvelle salle</h2>
+
 <div class="container">
-    <form method="post" th:action="@{/editMember/{id}(id=${id})}" th:object="${user}">
+    <form method="post" th:action="@{/editRoom/{room_id}(room_id=${room_id})}" th:object="${room}">
         <div class="form-group">
-            <label for="firstNameInput">First Name</label>
-            <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput"
-                   aria-describedby="firstNameHelp" placeholder="Enter first name">
-            <small id="firstNameHelp" class="form-text text-muted">Having a first name is always more
-                convenient.</small>
+            <label for="NameInput">Nom de la salle</label>
+            <input type="text" th:field="*{name}" class="form-control" id="nameInput"
+                   aria-describedby="nameHelp" placeholder="Entrez le nom de la salle">
+            <small id="nameHelp" class="form-text text-muted">Il vous faut un nom qui décrira la salle.</small>
         </div>
         <div class="form-group">
-            <label for="lastNameInput">Last Name</label>
-            <input type="text" th:field="*{lastName}" class="form-control" id="lastNameInput"
-                   aria-describedby="lastNameHelp" placeholder="Enter last name">
-            <small id="lastNameHelp" class="form-text text-muted">Having a last name is always more convenient.</small>
+            <label for="capacityInput">Capacité</label>
+            <select name="capacityBolean" id="capacityInput" th:field="*{capacity}">
+                <option value="1">1 personne</option>
+                <option value="2">2 personnes</option>
+                <option value="3">3 personnes</option>
+                <option value="4">4 personnes</option>
+                <option value="5">5 personnes</option>
+                <option value="6">6 personnes</option>
+                <option value="7">7 personnes</option>
+                <option value="8">8 personnes</option>
+                <option value="9">9 personnes</option>
+                <option value="10">10 personnes</option>
+            </select>
+            <small id="capacityHelp" class="form-text text-muted">Entrez le nombre de personnes que la salle peut
+                recevoir, ce nombre ne pourra pas être dépassé.</small>
         </div>
         <div class="form-group">
-            <label for="ageInput">Age</label>
-            <input type="text" th:field="*{age}" class="form-control" id="ageInput" aria-describedby="ageHelp"
-                   placeholder="Enter your age (not mandatory)">
-            <small id="ageHelp" class="form-text text-muted">We wont force you to give us your age. Especially if you're
-                ashamed to be old.</small>
+            <label for="screenInput">Écran</label>
+            <select name="screenBolean" id="screenInput" th:field="*{screen}">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1</option>
+                <option value="2">Oui, 2</option>
+                <option value="3">Oui, 3</option>
+            </select>
+            <small id="screenHelp" class="form-text text-muted">La salle possède-t'elle un écran ?</small>
         </div>
-        <button type="submit" class="button right">Ajouter</button>
+        <div class="form-group">
+            <label for="tabletInput">Tablette tactile</label>
+            <select name="tabletBolean" id="tabletInput" th:field="*{tablet}">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1</option>
+                <option value="2">Oui, 2</option>
+                <option value="3">Oui, 3</option>
+            </select>
+            <small id="tabletHelp" class="form-text text-muted">La salle possède-t'elle une tablette tactile ?</small>
+        </div>
+        <div class="form-group">
+            <label for="boardInput">Tableau</label>
+            <select name="boardBolean" id="boardInput" th:field="*{board}">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1</option>
+                <option value="2">Oui, 2</option>
+                <option value="3">Oui, 3</option>
+            </select>
+            <small id="boardHelp" class="form-text text-muted">La salle possède-t'elle un tableau ?</small>
+        </div>
+        <button type="submit" class="button right">Sauvegarder les modifications</button>
     </form>
 </div>
 
-</br></br></br></br></br></br>
+
+</br></br></br></br>
 <footer>
     </br>
     <h3>Copyright @2021 All rights reserved | <b>Version</b> 1.0</h3>

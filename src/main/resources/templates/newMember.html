@@ -32,6 +32,12 @@
             <small id="ageHelp" class="form-text text-muted">We wont force you to give us your age. Especially if you're
                 ashamed to be old.</small>
         </div>
+        <div class="form-group">
+            <label for="emailInput">Email</label>
+            <input type="text" th:field="*{email}" class="form-control" id="emailInput"
+                   aria-describedby="emailHelp" placeholder="Entrez votre mail">
+            <small id="emailHelp" class="form-text text-muted">Having a last name is always more convenient.</small>
+        </div>
         <button type="submit" class="button right">Ajouter</button>
     </form>
 </div>
