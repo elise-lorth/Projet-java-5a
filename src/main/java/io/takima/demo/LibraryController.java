@@ -25,7 +25,7 @@ public class LibraryController {
     @GetMapping
     public String homePage(Model m) {
         m.addAttribute("users", userDAO.findAll());
-        return "index";
+        return "experimental-calendar";
     }
 
     @GetMapping("/new")

@@ -11,6 +11,6 @@ data class Room (
         @Column(name = "capacity") var capacity: Int?,
         @Column(name = "screen") var screen: Boolean?,
         @Column(name = "tablet") var tablet: Boolean?,
-        @Column(name = "board") var board: Boolean?) {
+        @Column(name = "board") var board: Boolean?){
     constructor() :this(null, null, null, false, false, false)
 }
