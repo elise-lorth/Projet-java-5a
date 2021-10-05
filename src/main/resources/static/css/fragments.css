@@ -32,8 +32,8 @@ footer {
 
 .topleft {
     position: absolute;
-    top: 8px;
-    left: 16px;
+    top: 10px;
+    left: 10px;
 }
 
 .bottomleft {
@@ -85,8 +85,9 @@ h1 /* Titre dans le header */
 }
 
 img { /* image taille logo */
-    max-width: 40%;
+
     height: 60px;
+    width: 60px;
     z-index: 0;
 }
 
@@ -108,4 +109,69 @@ p /* Paragraphes */
 {
     color: rgb(54, 7, 44);
     font-size: 20px;
+}
+
+.container-New {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+
+.a-table {
+    color: #cbaeb5;
+}
+
+.a-table:hover {
+    color: #bd798f;
+}
+.tailleImageTableau {
+    width: 80px;
+}
+
+.bg-table {
+    color: #d0c9cb;
+    background-color: #590b35;
+}
+
+/*.table_new {*/
+/*    width: 100%;*/
+/*    margin-bottom: 1rem;*/
+/*    color: #212529;*/
+/*    mso-cellspacing: 10px;*/
+/*    padding: 10px;*/
+/*}*/
+
+/*th, td {*/
+
+/*    padding: 10px;*/
+/*    vertical-align: middle;*/
+/*}*/
+
+/*thead .trN {*/
+/*    background-color: #36072c;*/
+/*    color: #cbaeb5;*/
+/*}*/
+
+.table_New {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    mso-cellspacing: 10px;
+    padding: 10px;
+    border-color: #212529;
+    background-color: #590b35;}
+
+th,td {
+    padding: 10px;
+    vertical-align: middle;
+}
+
+thead th {
+    vertical-align: bottom;
+    /*border-bottom: (2 *$ table-border-width) solid $ table-border-color;*/
+    background-color: #36072c;
+    color: #cbaeb5;
 }

@@ -32,35 +32,27 @@ public class EditController {
     }
 
     @GetMapping("/editMember/{id}")
-    public String editUserPage(@PathVariable("id") long id, Model m) {
+    public RedirectView editUserPage(@PathVariable("id") long id, Model m) {
         Optional<User> user = userDAO.findById(id);
         m.addAttribute("user", user);
-        return "editMember";
+        return new RedirectView("/accueilAdmin");
     }
 
     @PostMapping("/editMember/{id}")
     public RedirectView editUser(@PathVariable("id") long id, @ModelAttribute User user, BindingResult result, Model m) {
-//        if (result.hasErrors()) {
-//            user.setId(id);
-//            return "update-user";
-//        }
         userDAO.save(user);
         return new RedirectView("/accueilAdmin");
     }
 
     @GetMapping("/editRoom/{id}")
-    public String editRoomPage(@PathVariable("id") long id, Model m) {
+    public RedirectView editRoomPage(@PathVariable("id") long id, Model m) {
         Optional<Room> room = roomDAO.findById(id);
         m.addAttribute("room", room);
-        return "editRoom";
+        return new RedirectView("/accueilAdmin");
     }
 
     @PostMapping("/editRoom/{id}")
     public RedirectView editRoom(@PathVariable("id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
-//        if (result.hasErrors()) {
-//            user.setId(id);
-//            return "update-user";
-//        }
         roomDAO.save(room);
         return new RedirectView("/accueilAdmin");
     }

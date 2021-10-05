@@ -1,10 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/fragments.html :: head">
+</head>
+
+<body style="background-color: #bd798f; color: floralwhite;">
+<header th:insert="fragments/fragments.html :: headerAdmin"></header>
+
+<h2>Ajoutez une nouvelle salle</h2>
+
+<div class="container">
+    <form method="post" th:action="@{/newRoom}" th:object="${room}">
+        <div class="form-group">
+            <label for="NameInput">Nom de la salle</label>
+            <input type="text" th:field="*{name}" class="form-control" id="nameInput"
+                   aria-describedby="nameHelp" placeholder="Entrez le nom de la salle">
+            <small id="nameHelp" class="form-text text-muted">Il vous faut un nom qui décrira la salle.</small>
+        </div>
+        <div class="form-group">
+            <label for="capacityInput">Capacité</label>
+            <input type="text" th:field="*{capacity}" class="form-control" id="capacityInput"
+                   aria-describedby="capacityHelp" placeholder="Entrez le nombre de personnes que la salle peut recevoir">
+            <small id="capacityHelp" class="form-text text-muted">Entrez un nombre maximum qui ne pourra pas être dépassé.</small>
+        </div>
+        <div class="form-group">
+            <label for="screenInput">Écran</label>
+            <select name="screenBolean" id="screenInput" th:field="*{screen}" >
+                <option value="True">Oui</option>
+                <option value="False">Non</option>
+            </select>
+            <small id="screenHelp" class="form-text text-muted">La salle possède-t'elle un écran ?</small>
+        </div>
+        <div class="form-group">
+            <label for="tabletInput">Tablette tactile</label>
+            <select name="tabletBolean" id="tabletInput" th:field="*{tablet}" >
+                <option value="True">Oui</option>
+                <option value="False">Non</option>
+            </select>
+            <small id="tabletHelp" class="form-text text-muted">La salle possède-t'elle une tablette tactile ?</small>
+        </div>
+        <div class="form-group">
+            <label for="boardInput">Tableau</label>
+            <select name="boardBolean" id="boardInput" th:field="*{board}">
+                <option value="True">Oui</option>
+                <option value="False">Non</option>
+            </select>
+            <small id="boardHelp" class="form-text text-muted">La salle possède-t'elle un tableau ?</small>
+        </div>
+        <button type="submit" class="button right">Ajouter</button>
+    </form>
+</div>
+
+
+</br></br></br></br>
+<footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
+
 </html>

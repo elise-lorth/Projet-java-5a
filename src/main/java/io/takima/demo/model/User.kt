@@ -2,9 +2,6 @@ package io.takima.demo.model
 
 import javax.persistence.*
 
-/**
- *
- */
 @Entity(name = "users")
 data class User(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
