@@ -66,6 +66,7 @@
             <th scope="col">Prénom</th>
             <th scope="col">Nom</th>
             <th scope="col">Age</th>
+            <th scope="col">Mail</th>
             <th scope="col">Modifier</th>
             <th scope="col">Supprimer</th>
         </tr>
@@ -75,6 +76,7 @@
             <td scope="row" th:text=${user.firstName}></td>
             <td th:text=${user.lastName}></td>
             <td th:text=${user.age}></td>
+            <td th:text=${user.email}></td>
             <td><a style="color: #ffffff;" th:href=@{/editMember/{id}(id=${user.id})}>Edit</a></td>
             <td><a style="color: #ffffff;" th:href=@{/deleteMember/{id}(id=${user.id})}>Delete</a></td>
         </tr>

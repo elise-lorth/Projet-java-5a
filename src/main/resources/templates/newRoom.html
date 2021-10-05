@@ -13,13 +13,13 @@
 <div class="container">
     <form method="post" th:action="@{/newRoom}" th:object="${room}">
         <div class="form-group">
-            <label for="NameInput">Nom de la salle</label>
+            <h4 for="NameInput">Nom de la salle</h4>
             <input type="text" th:field="*{name}" class="form-control" id="nameInput"
                    aria-describedby="nameHelp" placeholder="Entrez le nom de la salle">
-            <small id="nameHelp" class="form-text text-muted">Il vous faut un nom qui décrira la salle.</small>
+            <h5 id="nameHelp">Il vous faut un nom qui décrira la salle.</h5>
         </div>
         <div class="form-group">
-            <label for="capacityInput">Capacité</label>
+            <h4 for="capacityInput">Capacité</h4>
             <select name="capacityBolean" id="capacityInput" th:field="*{capacity}" >
                 <option value="1">1 personne</option>
                 <option value="2">2 personnes</option>
@@ -32,37 +32,60 @@
                 <option value="9">9 personnes</option>
                 <option value="10">10 personnes</option>
             </select>
-            <small id="capacityHelp" class="form-text text-muted">Entrez le nombre de personnes que la salle peut recevoir, ce nombre ne pourra pas être dépassé.</small>
+            <h5 id="capacityHelp">Entrez le nombre de personnes que la salle peut recevoir, ce nombre ne pourra pas être dépassé.</h5>
         </div>
         <div class="form-group">
-            <label for="screenInput">Écran</label>
+            <h4 for="screenInput">Écran</h4>
             <select name="screenBolean" id="screenInput" th:field="*{screen}" >
                 <option value="0">Non</option>
                 <option value="1">Oui, 1</option>
                 <option value="2">Oui, 2</option>
                 <option value="3">Oui, 3</option>
             </select>
-            <small id="screenHelp" class="form-text text-muted">La salle possède-t'elle un écran ?</small>
+            <h5 id="screenHelp">La salle possède-t'elle un écran ?</h5>
         </div>
         <div class="form-group">
-            <label for="tabletInput">Tablette tactile</label>
+            <h4 for="tabletInput">Tablette tactile</h4>
             <select name="tabletBolean" id="tabletInput" th:field="*{tablet}" >
                 <option value="0">Non</option>
                 <option value="1">Oui, 1</option>
                 <option value="2">Oui, 2</option>
                 <option value="3">Oui, 3</option>
             </select>
-            <small id="tabletHelp" class="form-text text-muted">La salle possède-t'elle une tablette tactile ?</small>
+            <h5 id="tabletHelp">La salle possède-t'elle une tablette tactile ?</h5>
         </div>
         <div class="form-group">
-            <label for="boardInput">Tableau</label>
+            <h4 for="boardInput">Tableau</h4>
             <select name="boardBolean" id="boardInput" th:field="*{board}">
                 <option value="0">Non</option>
                 <option value="1">Oui, 1</option>
                 <option value="2">Oui, 2</option>
                 <option value="3">Oui, 3</option>
             </select>
-            <small id="boardHelp" class="form-text text-muted">La salle possède-t'elle un tableau ?</small>
+            <h5 id="boardHelp">La salle possède-t'elle un tableau ?</h5>
+        </div>
+        <div class="form-group">
+            <h4 for="iconInput">Icone</h4>
+            <select name="iconBolean" id="iconInput" th:field="*{icon}">
+                <option value="images/coliseum.png">Le colisée et Rome</option>
+                <option value="images/eiffel-tower.png">La tour Eiffel et Paris</option>
+                <option value="images/beach.png">Parasol à la plage</option>
+                <option value="images/camping.png">Tente de camping au coin du feu</option>
+                <option value="images/caravan.png">Caravane en forêt</option>
+                <option value="images/desert.png">Un dromadaire dans le desert</option>
+                <option value="images/farm.png">Petite maison à la campagne</option>
+                <option value="images/forest.png">Une forêt de sapin</option>
+                <option value="images/great-wall-of-china.png">La grande muraille de Chine</option>
+                <option value="images/haunted-house.png">Une maison hantée</option>
+                <option value="images/new-york.png">Ney-York et sa statue</option>
+                <option value="images/palace.png">Château féérique</option>
+                <option value="images/sea-bottom.png">Un poisson et du corail</option>
+                <option value="images/sky.png">Une nuit de pleine lune</option>
+                <option value="images/snowman.png">Une maison enneigée et bonhomme de neige.</option>
+                <option value="images/volcano.png">Un volcan sur une île</option>
+                <option value="images/whale.png">Baleine dans l'océan</option>
+            </select>
+            <h5 id="iconHelp">Choississez un icone parmis ceux de la liste</h5>
         </div>
         <button type="submit" class="button right">Ajouter</button>
     </form>
