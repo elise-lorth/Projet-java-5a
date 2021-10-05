@@ -1,6 +1,6 @@
-package io.takima.demo.model;
+package io.takima.demo.model
 
-import javax.persistence.*;
+import javax.persistence.*
 
 @Entity(name = "rooms")
 data class Room(
@@ -13,5 +13,5 @@ data class Room(
     @Column(name = "board") var board: Int?,
     @Column(name = "icon") var icon: String?
 ) {
-    constructor() : this(null, null, null, null, null,  null, null)
+    constructor() : this(null, null, null, null, null, null, null)
 }

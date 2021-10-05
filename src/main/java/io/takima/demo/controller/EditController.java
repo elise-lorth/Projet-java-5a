@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
@@ -23,8 +24,7 @@ public class EditController {
     private final ReservationDAO reservationDAO;
     private final JointureDAO jointureDAO;
 
-    public EditController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO)
-    {
+    public EditController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO) {
         this.userDAO = userDAO;
         this.roomDAO = roomDAO;
         this.reservationDAO = reservationDAO;
@@ -39,7 +39,8 @@ public class EditController {
     }
 
     @PostMapping("/editMember/{id}")
-    public RedirectView editUser(@PathVariable("id") long id, @ModelAttribute User user, BindingResult result, Model m) {
+    public RedirectView editUser(@PathVariable("id") long id, @ModelAttribute User user, BindingResult result, Model m, RedirectAttributes attrs) {
+        attrs.addFlashAttribute("message", "Utilisateur modifié avec succès");
         userDAO.save(user);
         return new RedirectView("/accueilAdmin");
     }
@@ -53,7 +54,8 @@ public class EditController {
     }
 
     @PostMapping("/editRoom/{room_id}")
-    public RedirectView editRoom(@PathVariable("room_id") long id, @ModelAttribute Room room, BindingResult result, Model m) {
+    public RedirectView editRoom(@PathVariable("room_id") long id, @ModelAttribute Room room, BindingResult result, Model m, RedirectAttributes attrs) {
+        attrs.addFlashAttribute("message_room", "Salle modifiée avec succès");
         roomDAO.save(room);
         return new RedirectView("/accueilAdmin");
     }

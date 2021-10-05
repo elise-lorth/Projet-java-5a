@@ -2,7 +2,6 @@ package io.takima.demo.model
 
 import java.math.BigInteger
 import java.sql.Timestamp
-import java.util.*
 import javax.persistence.*
 
 /**

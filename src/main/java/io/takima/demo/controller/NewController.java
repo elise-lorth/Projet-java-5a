@@ -24,8 +24,7 @@ public class NewController {
     private final ReservationDAO reservationDAO;
     private final JointureDAO jointureDAO;
 
-    public NewController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO)
-    {
+    public NewController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO) {
         this.userDAO = userDAO;
         this.roomDAO = roomDAO;
         this.reservationDAO = reservationDAO;
@@ -54,7 +53,7 @@ public class NewController {
 
     @PostMapping("/newRoom")
     public RedirectView createNewRoom(@ModelAttribute Room room, RedirectAttributes attrs) {
-        attrs.addFlashAttribute("message", "Salle ajoutée avec succès");
+        attrs.addFlashAttribute("message_room", "Salle ajoutée avec succès");
         roomDAO.save(room);
         return new RedirectView("/accueilAdmin");
     }
