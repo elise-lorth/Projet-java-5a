@@ -3,11 +3,19 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/fragments.html :: head"></head>
 
-<body style="background-color: #bd798f;    color: floralwhite;">
+<body style="background-image: url('images/backgroundAccueilPublic.png');">
 <header th:insert="fragments/fragments.html :: headerPublic"></header>
 
-<h2>Selectionnez la salle pour visualiser son calendrier </h2>
-<p>Choix de la salle</p>
+<div class="container-New" style="justify-content: flex-start;">
+    <h4 style="padding-right: 20px;" for="room">Selectionnez la salle pour visualiser son calendrier : </h4>
+    <select style="padding-right: 5px;" id="room" name="room">
+        <option th:each="room : ${rooms}">
+            <li th:utext="${room.name}">..</li>
+        </option>
+    </select>
+    <button style="margin-left: 20px;" type="submit" class="button">Afficher</button>
+</div>
+
 <p>Calendrier de la salle choisie</p>
 </br>
 
