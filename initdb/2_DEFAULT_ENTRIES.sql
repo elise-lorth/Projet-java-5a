@@ -11,3 +11,4 @@ INSERT INTO defaultdb.users (id, first_name, last_name, age) VALUES (10, 'Sacha'
 
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Rome',4,TRUE,TRUE,FALSE,'images/coliseum.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Paris',6,TRUE,TRUE,FALSE,'images/eiffel-tower.png');
+

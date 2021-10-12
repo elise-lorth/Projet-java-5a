@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping(path = "")
 public class NewController {
@@ -59,9 +61,6 @@ public class NewController {
         return new RedirectView("/accueilAdmin");
     }
 
-    @GetMapping("/reservation")
-    public String addReservationPage(Model m) {
-        m.addAttribute("user", new User());
-        return "reservation";
-    }
+
+
 }

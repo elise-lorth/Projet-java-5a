@@ -40,6 +40,7 @@ public class DeleteController {
         userDAO.delete(user);
         return new RedirectView("/accueilAdmin");
     }
+
     @GetMapping("/deleteRoom/{id}")
     public RedirectView deleteRoom(@PathVariable("id") long id, Model model) {
         Room room = roomDAO.findById(id)
