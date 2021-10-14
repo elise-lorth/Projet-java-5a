@@ -3,7 +3,6 @@ package io.takima.demo.model
 import org.springframework.format.annotation.DateTimeFormat
 import java.math.BigInteger
 import java.sql.Timestamp
-import java.util.*
 import javax.persistence.*
 
 /**

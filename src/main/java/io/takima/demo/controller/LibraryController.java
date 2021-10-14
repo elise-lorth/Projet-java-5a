@@ -24,6 +24,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  *
@@ -36,8 +37,7 @@ public class LibraryController {
     private final ReservationDAO reservationDAO;
     private final JointureDAO jointureDAO;
 
-    public LibraryController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO)
-    {
+    public LibraryController(UserDAO userDAO, RoomDAO roomDAO, ReservationDAO reservationDAO, JointureDAO jointureDAO) {
         this.userDAO = userDAO;
         this.roomDAO = roomDAO;
         this.reservationDAO = reservationDAO;

@@ -1,10 +1,9 @@
-package io.takima.demo.model;
+package io.takima.demo.model
 
-import javax.persistence.*;
+import javax.persistence.*
 
 @Entity(name = "rooms")
 data class Room(
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id var room_id: Long?,
     @Column(name = "name") var name: String?,
