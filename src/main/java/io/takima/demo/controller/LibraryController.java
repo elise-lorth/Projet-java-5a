@@ -120,6 +120,9 @@ public class LibraryController {
 
         m.addAttribute("search", foundRooms );
         m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("reservation", new Reservation());
+        m.addAttribute("room", new Room() );
+        m.addAttribute("dates", new Date() );
 
         return "reservation";
     }
@@ -138,12 +141,6 @@ public class LibraryController {
     @PostMapping(value = "/reservation",params = "action=add")
     public RedirectView addReservation(@ModelAttribute io.takima.demo.model.Date dates,Reservation reservation, RedirectAttributes attrs) throws ParseException {
         attrs.addFlashAttribute("message", "Salle ajoutée avec succès");
-        //Timestamp.valueOf(reservation.getEnd_date());
-
-
-            //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss", Locale.ENGLISH);
-            //Date date = (Date) formatter.parse(test);
-            //Reservation reservation = new Reservation();
         System.out.println(dates.getDate_d() + "" + dates.getDate_f());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -158,9 +155,6 @@ public class LibraryController {
 
             reservation.setStart_date(T);
             reservation.setEnd_date(T2);
-            //reservation.setEnd_date(reservation.getEnd_date());
-            //reservation.setStart_date(Timestamp.valueOf("2021-10-06 08:00:00"));
-            //reservation.setEnd_date(Timestamp.valueOf("2021-12-06 08:00:00"));
             reservationDAO.save(reservation);
 
 
