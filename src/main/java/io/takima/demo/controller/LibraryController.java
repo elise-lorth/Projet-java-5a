@@ -4,26 +4,19 @@ import io.takima.demo.DAO.JointureDAO;
 import io.takima.demo.DAO.ReservationDAO;
 import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
-import io.takima.demo.model.Reservation;
-import io.takima.demo.model.User;
-import io.takima.demo.model.Room;
-import io.takima.demo.model.Date;
+import io.takima.demo.model.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
-import java.util.Optional;
+
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -43,6 +36,8 @@ public class LibraryController {
         this.reservationDAO = reservationDAO;
         this.jointureDAO = jointureDAO;
     }
+
+
 
     @GetMapping
     public String homePage(Model m) {
@@ -65,12 +60,49 @@ public class LibraryController {
         return "accueilAdmin";
     }
 
+
+    public class Dates{
+        Long id;
+        String date_d;
+        String date_f;
+
+        public Dates() {
+
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public String getDate_d() {
+            return date_d;
+        }
+
+        public void setDate_d(String date_d) {
+            this.date_d = date_d;
+        }
+
+        public String getDate_f() {
+            return date_f;
+        }
+
+        public void setDate_f(String date_f) {
+            this.date_f = date_f;
+        }
+    }
+
+
     @GetMapping("/reservation")
     public String showRooms(Model m) {
         m.addAttribute("reservation", new Reservation());
         m.addAttribute("room", new Room() );
-        m.addAttribute("dates", new Date() );
+        m.addAttribute("dates", new Dates() );
         m.addAttribute("users", userDAO.findAll());
+
         return "reservation";
     }
 
@@ -122,24 +154,14 @@ public class LibraryController {
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("reservation", new Reservation());
         m.addAttribute("room", new Room() );
-        m.addAttribute("dates", new Date() );
-
+        m.addAttribute("dates", new Dates() );
         return "reservation";
     }
 
 
 
-    @GetMapping("/reservation/{id}")
-    public RedirectView deleteUser(@PathVariable("id") long id, Model model) {
-        User user = userDAO.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-
-        return new RedirectView("/accueilAdmin");
-
-    }
-
     @PostMapping(value = "/reservation",params = "action=add")
-    public RedirectView addReservation(@ModelAttribute io.takima.demo.model.Date dates,Reservation reservation, RedirectAttributes attrs) throws ParseException {
+    public RedirectView addReservation(@ModelAttribute("Date") Dates dates,@RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation, RedirectAttributes attrs) throws ParseException {
         attrs.addFlashAttribute("message", "Salle ajoutée avec succès");
         System.out.println(dates.getDate_d() + "" + dates.getDate_f());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
@@ -156,7 +178,16 @@ public class LibraryController {
             reservation.setStart_date(T);
             reservation.setEnd_date(T2);
             reservationDAO.save(reservation);
+            Long user;
 
+        for(int i = 0; i< listuser.length; i++)
+        {
+                user = (long) listuser[i];
+                Jointure jointure = new Jointure(user);
+                jointure.setReservation(reservation.getId());
+                jointureDAO.save(jointure);
+
+        }
 
         return new RedirectView("/accueilAdmin");
     }
