@@ -1,11 +1,11 @@
 body /* Change la police de tout le body */
 {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
     /*margin-right: 12px;
     margin-top: 20px;
     margin-bottom: 12px;*/
-    background-color: #bd798f;
-    color: floralwhite;
+    /*background-color: #bd798f;*/
+    /*color: floralwhite;*/
 }
 
 header {
@@ -18,7 +18,7 @@ footer {
     color: #e5b2cb;
 }
 
-/* Pour définir les positions, inscrite class="button right" */
+/* Pour définir les positions, inscrire comme class="button right" */
 .topright {
     position: absolute;
     top: 10px;
@@ -63,7 +63,7 @@ footer {
     padding: 12px 15px;
     border-radius: 12px;
     font-size: 18px;
-    /*margin: 3px 3px;*/
+    margin: 3px 3px;
     transition-duration: 0.4s;
 }
 
@@ -81,8 +81,8 @@ img { /* image taille logo */
 
 h1 /* Titre dans le header */
 {
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 28px;
+    /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
+    font-size: 36px;
     color: rgb(203, 174, 181);
     position: relative;
     left: 75px;
@@ -98,13 +98,14 @@ h2 /* Titre des pages */
 
 h3 /* Dans le footer */
 {
-    font-size: 15px;
+    font-size: 20px;
     color: rgb(178, 142, 159);
     margin-bottom: 13px;
     padding-bottom: 10px;
+    /*text-align: center;*/
 }
 
-h4 /* Pour les labels */
+h4 /* Pour les labels de create-edit*/
 {
     font-size: 15px;
     color: rgb(54, 7, 44);
@@ -122,6 +123,7 @@ p /* Paragraphes */
     font-size: 20px;
 }
 
+/*Organisation des items dans des containers*/
 .container-New {
     width: 97%;
     display: flex;
@@ -130,60 +132,14 @@ p /* Paragraphes */
     margin-top: 10px;
 }
 
-/*.a-table {*/
-/*    color: #cbaeb5;*/
-/*}*/
-
-/*.a-table:hover {*/
-/*    color: #bd798f;*/
-/*}*/
+.container-For3 {
+    width: 97%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
 
 .tailleImageTableau {
     width: 80px;
 }
-
-/*.bg-table {*/
-/*    color: #d0c9cb;*/
-/*    background-color: #590b35;*/
-/*}*/
-
-/*.table_new {*/
-/*    width: 100%;*/
-/*    margin-bottom: 1rem;*/
-/*    color: #212529;*/
-/*    mso-cellspacing: 10px;*/
-/*    padding: 10px;*/
-/*}*/
-
-/*th, td {*/
-
-/*    padding: 10px;*/
-/*    vertical-align: middle;*/
-/*}*/
-
-/*thead .trN {*/
-/*    background-color: #36072c;*/
-/*    color: #cbaeb5;*/
-/*}*/
-
-/*.table_New {*/
-/*    width: 100%;*/
-/*    margin-bottom: 1rem;*/
-/*    color: #212529;*/
-/*    mso-cellspacing: 10px;*/
-/*    padding: 10px;*/
-/*    border-color: #212529;*/
-/*    background-color: #590b35;*/
-/*}*/
-
-/*th, td {*/
-/*    padding: 10px;*/
-/*    vertical-align: middle;*/
-/*}*/
-
-/*thead th {*/
-/*    vertical-align: bottom;*/
-/*    !*border-bottom: (2 *$ table-border-width) solid $ table-border-color;*!*/
-/*    background-color: #36072c;*/
-/*    color: #cbaeb5;*/
-/*}*/
