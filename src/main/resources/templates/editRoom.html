@@ -20,14 +20,18 @@
     </br>
 </header>
 
-<h2>Ajoutez une nouvelle salle</h2>
+<div class="container-New">
+    <h2>Modifiez la salle</h2>
+    <a href="/accueilAdmin" class="button">Retour</a>
+</div>
 
 <div class="container">
     <form method="post" th:action="@{/editRoom/{room_id}(room_id=${room_id})}" th:object="${room}">
         <div class="form-group">
             <h4 for="NameInput">Nom de la salle</h4>
             <input type="text" th:field="*{name}" class="form-control" id="nameInput"
-                   aria-describedby="nameHelp" placeholder="Entrez le nom de la salle">
+                   aria-describedby="nameHelp" placeholder="Entrez le nom de la salle"
+                   maxlength="30" required>
             <h5 id="nameHelp">Il vous faut un nom qui décrira la salle.</h5>
         </div>
         <div class="form-group">
