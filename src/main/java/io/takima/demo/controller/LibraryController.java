@@ -4,11 +4,26 @@ import io.takima.demo.DAO.JointureDAO;
 import io.takima.demo.DAO.ReservationDAO;
 import io.takima.demo.DAO.RoomDAO;
 import io.takima.demo.DAO.UserDAO;
+
+import io.takima.demo.model.*;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
+
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 import io.takima.demo.model.Room;
 import io.takima.demo.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,6 +51,8 @@ public class LibraryController {
         this.jointureDAO = jointureDAO;
     }
 
+
+
     @GetMapping
     public String homePage(Model m) {
         m.addAttribute("users", userDAO.findAll());
@@ -56,4 +73,8 @@ public class LibraryController {
         m.addAttribute("rooms", roomDAO.findAll());
         return "accueilAdmin";
     }
+
+
+
+
 }
