@@ -24,29 +24,56 @@
         </p>
 
     <form th:object="${room}"   method="post">
-        <p>
-            <label for="searchC">Capacity</label>
-            <input type="text" th:field="*{capacity}" name="capacity" id="searchC"
-            placeholder="Capacité désirée">
-        </p>
+        <div class="form-group">
+            <h4 for="capacityInput">Capacité</h4>
+            <select name="capacityBolean" id="capacityInput" th:field="*{capacity}">
+                <option value="1">1 personne</option>
+                <option value="2">2 personnes</option>
+                <option value="3">3 personnes</option>
+                <option value="4">4 personnes</option>
+                <option value="5">5 personnes</option>
+                <option value="6">6 personnes</option>
+                <option value="7">7 personnes</option>
+                <option value="8">8 personnes</option>
+                <option value="9">9 personnes</option>
+                <option value="10">10 personnes</option>
+            </select>
+            <h5 id="capacityHelp">Entrez le nombre de personnes que la salle peut recevoir, ce nombre ne pourra pas être
+                dépassé.</h5>
+        </div>
 
 
 <p>Équipement : <p>
-<p>
-    <label for="searchB">Tableau</label>
-    <input type="text" th:field="*{board}" name="board" id="searchB"
-           placeholder="nombre de tableaux">
-</p>
-<p>
-    <label for="searchS">Ecran</label>
-    <input type="text" th:field="*{screen}" name="screen" id="searchS"
-           placeholder="nombre d'écran">
-</p>
-        <p>
-            <label for="searchT">Tablette</label>
-            <input type="text" th:field="*{tablet}" name="tablet" id="searchT"
-                   placeholder="nombre de tablettes">
-        </p>
+        <div class="form-group">
+            <h4 for="boardInput">Tableau</h4>
+            <select name="boardBolean" id="boardInput" th:field="*{board}">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1</option>
+                <option value="2">Oui, 2</option>
+                <option value="3">Oui, 3</option>
+            </select>
+            <h5 id="boardHelp">La salle possède-t'elle un tableau ?</h5>
+        </div>
+        <div class="form-group">
+            <h4 for="screenInput">Écran</h4>
+            <select name="screenBolean" id="screenInput" th:field="*{screen}">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1</option>
+                <option value="2">Oui, 2</option>
+                <option value="3">Oui, 3</option>
+            </select>
+            <h5 id="screenHelp">La salle possède-t'elle un écran ?</h5>
+        </div>
+        <div class="form-group">
+            <h4 for="tabletInput">Tablette tactile</h4>
+            <select name="tabletBolean" id="tabletInput" th:field="*{tablet}">
+                <option value="0">Non</option>
+                <option value="1">Oui, 1</option>
+                <option value="2">Oui, 2</option>
+                <option value="3">Oui, 3</option>
+            </select>
+            <h5 id="tabletHelp">La salle possède-t'elle une tablette tactile ?</h5>
+        </div>
         <div class="container">
             <button type="submit"   name="action" value="find" class="button right">Rechercher</button>
 

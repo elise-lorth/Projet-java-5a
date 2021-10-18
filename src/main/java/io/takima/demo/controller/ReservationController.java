@@ -80,14 +80,14 @@ public class ReservationController {
     }
 
     @PostMapping(params = "action=find")
-    public String  findRoom(Room room, Model m,
+    public String  findRoom( Model m,
                             String capacity,
                             String board,
                             String screen,
                             String tablet)
     {
         List<Room> foundRooms = (List<Room>) roomDAO.findAll();
-        if(!capacity.equals(""))
+        if(!capacity.equals("0"))
         {
             int capacityi = Integer.parseInt(capacity);
             foundRooms = roomDAO.findByCapacityGreaterThanEqual(
@@ -95,28 +95,28 @@ public class ReservationController {
             );
         }
 
-        if(!board.equals(""))
+        if(!board.equals("0"))
         {
             int boardi = Integer.parseInt(board);
-            List<Room> foundRoomsB = roomDAO.findByBoard(
+            List<Room> foundRoomsB = roomDAO.findByBoardGreaterThanEqual(
                     boardi
             );
             foundRooms.retainAll(foundRoomsB);
         }
 
-        if(!tablet.equals(""))
+        if(!tablet.equals("0"))
         {
             int tableti = Integer.parseInt(tablet);
-            List<Room> foundRoomsT = roomDAO.findByTablet(
+            List<Room> foundRoomsT = roomDAO.findByTabletGreaterThanEqual(
                     tableti
             );
             foundRooms.retainAll(foundRoomsT);
         }
 
-        if(!screen.equals(""))
+        if(!screen.equals("0"))
         {
             int screeni = Integer.parseInt(screen);
-            List<Room> foundRoomsS = roomDAO.findByScreen(
+            List<Room> foundRoomsS = roomDAO.findByScreenGreaterThanEqual(
                     screeni
             );
             foundRooms.retainAll(foundRoomsS);
