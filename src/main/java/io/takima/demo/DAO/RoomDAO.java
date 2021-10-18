@@ -13,8 +13,9 @@ import java.util.List;
 public interface RoomDAO extends CrudRepository<Room, Long> {
 List<Room> findByCapacity(int capacity);
 List<Room> findByCapacityGreaterThanEqual(int capacity);
-List<Room> findByBoard(int board);
-List<Room> findByScreen(int screen);
-List<Room> findByTablet(int tablet);
+List<Room> findByBoardGreaterThanEqual(int board);
+List<Room> findByScreenGreaterThanEqual(int screen);
+List<Room> findByTabletGreaterThanEqual(int tablet);
+
 }
 
