@@ -48,7 +48,6 @@ public class EditController {
     @GetMapping("/editRoom/{room_id}")
     public String editRoomPage(@PathVariable("room_id") long room_id, Model m) {
         Optional<Room> room = roomDAO.findById(room_id);
-        System.out.println(room);
         m.addAttribute("room", room);
         return "/editRoom";
     }
