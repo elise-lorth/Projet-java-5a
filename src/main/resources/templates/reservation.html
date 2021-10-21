@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments/fragments.html :: head"></head>
 
-<head th:insert="fragments/fragments.html :: head">
-</head>
+<body style="background-color: #e5b2cb; background-image: url('images/backgroundAccueilPublic.png');">
+<script>
+    function preferenceSalle() {
+        var salle1 = document.getElementById("mySelect").value;
+        var salle2 = document.getElementById("mySelect2").value;
+        document.getElementById("affichageSallePreferees").innerHTML = "Préférences : " + salle1 +" "+salle2;
+    }
+</script>
 
-<body style="background-color: #bd798f; color: floralwhite;">
 <header th:insert="fragments/fragments.html :: headerAdmin"></header>
 
-<h2>Reservation de salle </h2>
-
-
-<p class="container">
-
-
-        <p>
-            Veuillez indiquer pour quand vous voulez réserver :<br />
-            <input type="radio" name="preference" value="matin" id="matin" /> <label for="matin">Le matin</label><br />
-            <input type="radio" name="preference" value="apres-midi" id="apres-midi" /> <label for="apres-midi">L'apres-midi</label><br />
-            <input type="radio" name="preference" value="asap" id="asap" /> <label for="asap">Des que possible</label><br />
-            <input type="radio" name="preference" value="semainepro" id="semainepro" /> <label for="semainepro">la semaine prochaine</label><br />
-            <input type="radio" name="preference" value="moispro" id="moispro" /> <label for="moispro">le mois prochain</label><br />
-        </p>
-
-    <form th:object="${room}"   method="post">
+<div class="container-For2">
+    <h2>Réserver une salle </h2>
+    <a href="/accueilAdmin" class="button">Retour</a>
+</div>
+<div class="container">
+    <form th:object="${room}" method="post">
         <div class="form-group">
-            <h4 for="capacityInput">Capacité</h4>
+            <h4 for="capacityInput">Combien de personnes serez-vous ?</h4>
             <select name="capacityBolean" id="capacityInput" th:field="*{capacity}">
                 <option value="1">1 personne</option>
                 <option value="2">2 personnes</option>
@@ -38,138 +34,150 @@
                 <option value="9">9 personnes</option>
                 <option value="10">10 personnes</option>
             </select>
-            <h5 id="capacityHelp">Entrez le nombre de personnes que la salle peut recevoir, ce nombre ne pourra pas être
-                dépassé.</h5>
         </div>
 
-
-<p>Équipement : <p>
+        <p>Équipement necessaire :
+        <p>
         <div class="form-group">
-            <h4 for="boardInput">Tableau</h4>
+            <h4 for="screenInput">Combien de lits voulez vous ?</h4>
+            <select name="screenBolean" id="screenInput" th:field="*{screen}">
+                <option value="0">Aucun</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <h5 id="screenHelp">Comptez un lit pour deux pour être confortable</h5>
+        </div>
+
+        <div class="form-group">
+            <h4 for="boardInput">Voulez vous un pack de jouets ?</h4>
             <select name="boardBolean" id="boardInput" th:field="*{board}">
                 <option value="0">Non</option>
                 <option value="1">Oui, 1</option>
                 <option value="2">Oui, 2</option>
-                <option value="3">Oui, 3</option>
             </select>
-            <h5 id="boardHelp">La salle possède-t'elle un tableau ?</h5>
+            <h5 id="boardHelp">Les packs sont confectionnés avec amour par nos équipes</h5>
         </div>
+
         <div class="form-group">
-            <h4 for="screenInput">Écran</h4>
-            <select name="screenBolean" id="screenInput" th:field="*{screen}">
-                <option value="0">Non</option>
-                <option value="1">Oui, 1</option>
-                <option value="2">Oui, 2</option>
-                <option value="3">Oui, 3</option>
-            </select>
-            <h5 id="screenHelp">La salle possède-t'elle un écran ?</h5>
-        </div>
-        <div class="form-group">
-            <h4 for="tabletInput">Tablette tactile</h4>
+            <h4 for="tabletInput">Combien de ... voulez-vous ?</h4>
             <select name="tabletBolean" id="tabletInput" th:field="*{tablet}">
-                <option value="0">Non</option>
-                <option value="1">Oui, 1</option>
-                <option value="2">Oui, 2</option>
-                <option value="3">Oui, 3</option>
+                <option value="0">Aucun</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
-            <h5 id="tabletHelp">La salle possède-t'elle une tablette tactile ?</h5>
+            <!-- <h5 id="tabletHelp">La salle possède-t'elle une tablette tactile ?</h5>-->
         </div>
         <div class="container">
-            <button type="submit"   name="action" value="find" class="button right">Rechercher</button>
-
+            <button type="submit" name="action" value="find" class="button right">Rechercher</button>
         </div>
     </form>
 
-<p>Préference pour la ou les salles :</p>
+<!--    <h4>Si votre date est fixée veuillez l'indiquer : </h4>-->
+<!--        <label for="start_dateInput">Date de début</label>-->
+<!--        <input type="datetime-local" th:field="*{date_d}" class="form-control" id="start_dateInput"-->
+<!--               placeholder="Date de début de la reservation">-->
 
+<!--        <label for="end_dateInput">Date de fin</label>-->
+<!--        <input type="datetime-local" th:field="*{date_f}" class="form-control" id="end_dateInput"-->
+<!--               placeholder="Date de fin de la reservation">-->
 
-
-
-<form method="post" th:action="@{/reservation}" th:object="${dates}"   >
-
-
-
-    <h2>Salles correspondant aux critères : </h2>
-<p>Liste salle</p>
-<div class="container table-responsive" th:object="${reservation}">
-    <table class="table table-striped table-dark table-hover bg-table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col" class="tailleImageTableau"></th>
-            <th scope="col">Nom</th>
-            <th scope="col">Capacité</th>
-            <th scope="col">Écran</th>
-            <th scope="col">Tablette</th>
-            <th scope="col">Tableau</th>
-            <th scope="col">Ajouter</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="room : ${search}">
-            <td scope="row"><img th:src=${room.icon}></td>
-            <td th:text=${room.name}></td>
-            <td th:text=${room.capacity}></td>
-            <td th:text=${room.screen}></td>
-            <td th:text=${room.tablet}></td>
-            <td th:text=${room.board}></td>
-            <td>
-            <input type="radio" th:field="*{room}" th:value="${room.room_id}" /></td>
-
-          </tr>
-        </tbody>
-    </table>
-</div>
-
-
-
-
-<h2>Sélectionnez les personnes à inviter : </h2>
-<p>Liste des personnes</p>
-
-<div class="container table-responsive" >
-    <!--    container-->
-    <table class="table table-striped table-dark table-hover bg-table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">Prenom</th>
-            <th scope="col">Nom</th>
-            <th scope="col">Age</th>
-            <th scope="col">Ajouter</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="user : ${users}">
-            <td scope="row" th:text="${user.firstName}"></td>
-            <td th:text="${user.lastName}"></td>
-            <td th:text="${user.age}"></td>
-            <td><input type="checkbox"  name="listuser" th:value="${user.id}"/></td>
-
-        </tr>
-        </tbody>
-    </table>
-</div>
-
-    <div class="form-group">
-        <label for="start_dateInput">Date de début</label>
-        <input type="datetime-local" th:field="*{date_d}" class="form-control" id="start_dateInput"
-               placeholder="Date de début de la reservation">
-    </div>
-
-    <div class="form-group">
-        <label for="end_dateInput">Date de fin</label>
-        <input type="datetime-local" th:field="*{date_f}" class="form-control" id="end_dateInput"
-               placeholder="Date de fin de la reservation">
+    <div>
+        <h4>Si votre date est flexible, veuillez indiquer votre préférence de date de réservation :</h4>
+        <input type="radio" name="preference" value="matin" id="matin"/> <label for="matin">Le matin</label><br/>
+        <input type="radio" name="preference" value="apres-midi" id="apres-midi"/> <label for="apres-midi">L'après-midi</label><br/>
+        <input type="radio" name="preference" value="asap" id="asap"/> <label for="asap">Dès que possible</label><br/>
+        <input type="radio" name="preference" value="semainepro" id="semainepro"/> <label for="semainepro">La semaine prochaine</label><br/>
+        <input type="radio" name="preference" value="moispro" id="moispro"/> <label for="moispro">Le mois prochain</label><br/>
     </div>
 
 
+    <p>Indiquez la ou les salles que vous préféreriez :</p>
+    <div>
+        <select id="mySelect" onchange="preferenceSalle()">
+            <option value=""> </option>
+            <option th:each="room : ${rooms}"
+                    th:utext="${room.name}"
+                    th:value="${room.room_id}">
+            </option>
+        </select>
+        <select id="mySelect2" onchange="preferenceSalle()">
+            <option value=""> </option>
+            <option th:each="room : ${rooms}"
+                    th:utext="${room.name}"
+                    th:value="${room.room_id}">
+            </option>
+        </select>
+    </div>
 
-<button type=submit name="action" value="add" class="button right">Envoyer une invitation </button>
-</form>
+    <div class="container" id="affichage">
+        <span id="affichageSallePreferees"></span>
+    </div>
 
-    </br>
+    <form method="post" th:action="@{/reservation}" th:object="${dates}">
+        <h2>Salles correspondant aux critères : </h2>
+        <div class="container table-responsive" th:object="${reservation}">
+            <table class="table table-striped table-dark table-hover bg-table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col" class="tailleImageTableau"></th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Capacité</th>
+                    <th scope="col">Lits</th>
+                    <th scope="col">Tablette</th>
+                    <th scope="col">Packs</th>
+                    <th scope="col">Ajouter</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="room : ${search}">
+                    <td scope="row"><img th:src=${room.icon}></td>
+                    <td th:text=${room.name}></td>
+                    <td th:text=${room.capacity}></td>
+                    <td th:text=${room.screen}></td>
+                    <td th:text=${room.tablet}></td>
+                    <td th:text=${room.board}></td>
+                    <td><input type="radio" th:field="*{room}" th:value="${room.room_id}"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
-</br></br></br></br></br></br>
-<footer th:insert="fragments/fragments.html :: footer"></footer>
+
+        <h2>Sélectionnez les personnes à inviter : </h2>
+        <div class="container table-responsive">
+            <table class="table table-striped table-dark table-hover bg-table">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Prénom</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Âge</th>
+                    <th scope="col">Ajouter</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="user : ${users}">
+                    <td scope="row" th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.age}"></td>
+                    <td><input type="checkbox" name="listuser" th:value="${user.id}"/></td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+        <button type=submit name="action" value="add" class="button right">Envoyer une invitation</button>
+    </form>
+</div>
+
+    </br></br></br></br>
+    <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
-
 </html>
