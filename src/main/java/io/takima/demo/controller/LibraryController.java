@@ -51,8 +51,6 @@ public class LibraryController {
         this.jointureDAO = jointureDAO;
     }
 
-
-
     @GetMapping
     public String homePage(Model m) {
         m.addAttribute("users", userDAO.findAll());
@@ -73,8 +71,4 @@ public class LibraryController {
         m.addAttribute("rooms", roomDAO.findAll());
         return "accueilAdmin";
     }
-
-
-
-
 }

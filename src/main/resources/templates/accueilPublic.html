@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments/fragments.html :: head"></head>
 
-<body style="background-image: url('images/backgroundAccueilPublic.png');">
+<body style="background-image: url('images/backgroundCalendrier.png');">
 
 <script>
 function myFunction() {
@@ -14,8 +14,8 @@ function myFunction() {
 
 <header th:insert="fragments/fragments.html :: headerPublic"></header>
 
-<div class="container-New" style="justify-content: flex-start;">
-    <h4 style="padding-right: 20px;" for="roomImput">Sélectionnez la salle pour visualiser son calendrier : </h4>
+<div class="container-For3">
+    <h2 style="padding-right: 20px;" for="roomImput">Sélectionnez la salle pour visualiser son calendrier : </h2>
     <select id="mySelect" onchange="myFunction()">
         <option th:each="room : ${rooms}"
                 th:utext="${room.name}"
@@ -25,7 +25,7 @@ function myFunction() {
 </div>
 
 <div class="container" id="affichage">
-    <span style="color: rgb(54, 7, 44);font-size: 17px;" id="affichageSalleSelectionee">Affichage salle</span>
+    <span id="affichageSalleSelectionee">Affichage salle</span>
 </div>
 
 <p>Calendrier de la salle choisie</p>

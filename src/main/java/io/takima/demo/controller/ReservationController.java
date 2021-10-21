@@ -39,9 +39,7 @@ public class ReservationController {
         String date_d;
         String date_f;
 
-        public Dates() {
-
-        }
+        public Dates() {}
 
         public Long getId() {
             return id;
@@ -75,7 +73,8 @@ public class ReservationController {
         m.addAttribute("room", new Room() );
         m.addAttribute("dates", new Dates());
         m.addAttribute("users", userDAO.findAll());
-
+        m.addAttribute("rooms", roomDAO.findAll());
+        m.addAttribute("dates", new Dates());
         return "reservation";
     }
 
@@ -86,6 +85,8 @@ public class ReservationController {
                             String screen,
                             String tablet)
     {
+        m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("rooms", roomDAO.findAll());
         List<Room> foundRooms = (List<Room>) roomDAO.findAll();
         if(!capacity.equals("0"))
         {
@@ -122,7 +123,6 @@ public class ReservationController {
             foundRooms.retainAll(foundRoomsS);
         }
 
-
         m.addAttribute("search", foundRooms );
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("reservation", new Reservation());
@@ -131,11 +131,9 @@ public class ReservationController {
         return "reservation";
     }
 
-
-
     @PostMapping(params = "action=add")
     public RedirectView addReservation(@ModelAttribute("Date") Dates dates, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation, RedirectAttributes attrs) throws ParseException {
-        attrs.addFlashAttribute("message", "Salle ajoutée avec succès");
+        attrs.addFlashAttribute("message", "Salle ajoutée avec succès"); // Pourquoi ?
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
         SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         java.util.Date d = sdf.parse(dates.getDate_d());
@@ -162,12 +160,5 @@ public class ReservationController {
 
         return new RedirectView("/accueilAdmin");
     }
-
-
-
-
-
-
-
 
 }
