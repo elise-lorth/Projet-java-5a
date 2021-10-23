@@ -121,6 +121,7 @@ p /* Paragraphes */
     color: rgb(54, 7, 44);
     font-size: 20px;
 }
+
 span {
     color: rgb(54, 7, 44);
     font-size: 19px;
@@ -144,5 +145,9 @@ span {
 }
 
 .tailleImageTableau {
-    width: 80px;
+    width: 90px; !important;
+}
+
+.tailleEquipementTableau {
+    width: 120px; !important;
 }

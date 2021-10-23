@@ -2,6 +2,7 @@
 
 Faire invitation par mail
 faire les backgrounds, finir réservation, changer couleur calendrier.
+Mettre limitations et required sur la page réservation
 
 Réservation de rooms de réunion
 ===========
