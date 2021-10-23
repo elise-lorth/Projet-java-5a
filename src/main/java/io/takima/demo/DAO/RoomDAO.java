@@ -18,4 +18,3 @@ List<Room> findByScreenGreaterThanEqual(int screen);
 List<Room> findByTabletGreaterThanEqual(int tablet);
 
 }
-

@@ -28,5 +28,10 @@ INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE 
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Blanc comme neige',5,'2','2','1','images/snowman.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Volcanoroom',6,'3','2','1','images/volcano.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Le grand bleu',2,'1','2','1','images/whale.png');
+INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2020-09-12T15:00:00', '2020-09-12T16:00:00');
+INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2020-09-12T17:00:00', '2020-09-12T19:00:00');
+INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2021-10-23T17:00:00', '2021-10-23T19:00:00');
+INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2021-10-23T20:00:00', '2021-10-23T21:00:00');
+INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2021-10-23T21:00:00', '2021-10-23T23:00:00');
 
 #         screen = lits (1 pour 2)

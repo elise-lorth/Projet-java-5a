@@ -33,6 +33,8 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.Optional;
 
+import java.math.BigInteger;
+
 /**
  *
  */
@@ -57,6 +59,7 @@ public class LibraryController {
     public String homePage(Model m) {
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("rooms", roomDAO.findAll());
+        m.addAttribute("meets", reservationDAO.findAll());
         return "accueilPublic";
     }
 
@@ -64,6 +67,8 @@ public class LibraryController {
     public String PublicPage(Model m) {
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("rooms", roomDAO.findAll());
+        m.addAttribute("meets", reservationDAO.findAll());
+        System.out.println(m.getAttribute("meets"));
         return "accueilPublic";
     }
 
