@@ -155,7 +155,7 @@ public class ReservationController {
         for (int j : listuser) {
             user = j;
             Jointure jointure = new Jointure(user);
-            jointure.setReservation(reservation.getId());
+            jointure.setReservation(reservation.getReservation_id());
             jointureDAO.save(jointure);
 
         }

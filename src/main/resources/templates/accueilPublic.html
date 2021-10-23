@@ -2,16 +2,29 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:insert="fragments/fragments.html :: head">
-    <link th:href= "@{/css/main.css}" rel='stylesheet' />
-    <script type= "text/javascript" th:src="@{/js/main.js}"></script>
-    <script type= "text/javascript" th:src="@{/js/locales-all.js}"></script>
-    <script>
+<head th:insert="fragments/fragments.html :: head"></head>
+<head>
+    <link th:href="@{/css/main.css}" rel='stylesheet'/>
+    <script type="text/javascript" th:src="@{/js/main.js}"></script>
+    <script type="text/javascript" th:src="@{/js/locales-all.js}"></script>
+    <script type="text/javascript">
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
+            dbContent = document.getElementById('baliseDb').textContent;
+            c = dbContent.slice(1, -1);
+            c = c.split(', R');
+
             var initialLocaleCode = 'fr';
             var localeSelectorEl = document.getElementById('locale-selector');
             var calendarEl = document.getElementById('calendar');
+
+            var meets = [];
+            for (const meet of c) {
+                smeet = meet.slice(0, -1);
+                smeet = smeet.split(/=|,/);
+                const el = {title: '', start: smeet[5], end: smeet[7]};
+                meets.push(el)
+            }
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 headerToolbar: {
@@ -19,14 +32,14 @@
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
-                initialDate: '2020-09-12',
+                initialDate: '2021-10-23',
                 locale: initialLocaleCode,
                 buttonIcons: false, // show the prev/next text
                 weekNumbers: true,
                 navLinks: true, // can click day/week names to navigate views
                 selectable: true,
                 selectMirror: true,
-                select: function(arg) {
+                select: function (arg) {
                     var title = prompt('Event Title:');
                     if (title) {
                         calendar.addEvent({
@@ -38,75 +51,20 @@
                     }
                     calendar.unselect()
                 },
-                eventClick: function(arg) {
+                eventClick: function (arg) {
                     if (confirm('Are you sure you want to delete this event?')) {
                         arg.event.remove()
                     }
                 },
                 editable: true,
                 dayMaxEvents: true, // allow "more" link when too many events
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: '2020-09-01'
-                    },
-                    {
-                        title: 'Long Event',
-                        start: '2020-09-07',
-                        end: '2020-09-10'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2020-09-09T16:00:00'
-                    },
-                    {
-                        groupId: 999,
-                        title: 'Repeating Event',
-                        start: '2020-09-16T16:00:00'
-                    },
-                    {
-                        title: 'Conference',
-                        start: '2020-09-11',
-                        end: '2020-09-13'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2020-09-12T10:30:00',
-                        end: '2020-09-12T12:30:00'
-                    },
-                    {
-                        title: 'Lunch',
-                        start: '2020-09-12T12:00:00'
-                    },
-                    {
-                        title: 'Meeting',
-                        start: '2020-09-12T14:30:00'
-                    },
-                    {
-                        title: 'Happy Hour',
-                        start: '2020-09-12T17:30:00'
-                    },
-                    {
-                        title: 'Dinner',
-                        start: '2020-09-12T20:00:00'
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: '2020-09-13T07:00:00'
-                    },
-                    {
-                        title: 'Click for Google',
-                        url: 'http://google.com/',
-                        start: '2020-09-28'
-                    }
-                ]
+                events: meets
             });
 
             calendar.render();
 
             // build the locale selector's options
-            calendar.getAvailableLocaleCodes().forEach(function(localeCode) {
+            calendar.getAvailableLocaleCodes().forEach(function (localeCode) {
                 var optionEl = document.createElement('option');
                 optionEl.value = localeCode;
                 optionEl.selected = localeCode == initialLocaleCode;
@@ -115,7 +73,7 @@
             });
 
             // when the selected option changes, dynamically change the calendar option
-            localeSelectorEl.addEventListener('change', function() {
+            localeSelectorEl.addEventListener('change', function () {
                 if (this.value) {
                     calendar.setOption('locale', this.value);
                 }
@@ -145,6 +103,7 @@
             max-width: 900px;
             margin: 40px auto;
             padding: 0 10px;
+            background-color: white;
         }
 
     </style>
@@ -154,10 +113,10 @@
 <body style="background-image: url('images/backgroundAccueilPublic.png');">
 
 <script>
-function myFunction() {
-  var x = document.getElementById("mySelect").value;
-  document.getElementById("affichageSalleSelectionee").innerHTML = "Affichage salle n°" + x;
-}
+    function myFunction() {
+        var x = document.getElementById("mySelect").value;
+        document.getElementById("affichageSalleSelectionee").innerHTML = "Affichage salle n°" + x;
+    }
 </script>
 
 <header th:insert="fragments/fragments.html :: headerPublic"></header>
@@ -178,11 +137,8 @@ function myFunction() {
 
 <p>Calendrier de la salle choisie</p>
 <div id='calendar'></div>
-<div th:insert="fragments/fragments.html :: calendar_div"/>
 </br>
-
-
-</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
+<div style="display: none" th:text="${meets}" id="baliseDb"></div>
 <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
 
