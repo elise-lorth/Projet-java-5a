@@ -13,10 +13,14 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Controller
 @RequestMapping(path = "/reservation")
@@ -34,10 +38,12 @@ public class ReservationController {
         this.jointureDAO = jointureDAO;
     }
 
-    public static class Dates{
+    public static class Dates{ // Classe pour récuperer les dates au format String dans le html
         Long id;
         String date_d;
-        String date_f;
+        String hours;
+        String minutes;
+        String preference;
 
         public Dates() {}
 
@@ -57,12 +63,28 @@ public class ReservationController {
             this.date_d = date_d;
         }
 
-        public String getDate_f() {
-            return date_f;
+        public String getHours() {
+            return hours;
         }
 
-        public void setDate_f(String date_f) {
-            this.date_f = date_f;
+        public void setHours(String hours) {
+            this.hours = hours;
+        }
+
+        public String getMinutes() {
+            return minutes;
+        }
+
+        public void setMinutes(String minutes) {
+            this.minutes = minutes;
+        }
+
+        public String getPreference() {
+            return preference;
+        }
+
+        public void setPreference(String preference) {
+            this.preference = preference;
         }
     }
 
@@ -83,8 +105,9 @@ public class ReservationController {
                             String capacity,
                             String board,
                             String screen,
-                            String tablet)
-    {
+                            String tablet,
+                             String name,
+                             @ModelAttribute("dates") Dates dates) throws ParseException {
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("rooms", roomDAO.findAll());
         List<Room> foundRooms = (List<Room>) roomDAO.findAll();
@@ -99,66 +122,89 @@ public class ReservationController {
         if(!board.equals("0"))
         {
             int boardi = Integer.parseInt(board);
-            List<Room> foundRoomsB = roomDAO.findByBoardGreaterThanEqual(
+            foundRooms.retainAll(roomDAO.findByBoardGreaterThanEqual(
                     boardi
-            );
-            foundRooms.retainAll(foundRoomsB);
+            ));
         }
 
         if(!tablet.equals("0"))
         {
             int tableti = Integer.parseInt(tablet);
-            List<Room> foundRoomsT = roomDAO.findByTabletGreaterThanEqual(
+
+            foundRooms.retainAll(roomDAO.findByTabletGreaterThanEqual(
                     tableti
-            );
-            foundRooms.retainAll(foundRoomsT);
+            ));
         }
 
         if(!screen.equals("0"))
         {
             int screeni = Integer.parseInt(screen);
-            List<Room> foundRoomsS = roomDAO.findByScreenGreaterThanEqual(
+            foundRooms.retainAll(roomDAO.findByScreenGreaterThanEqual(
                     screeni
-            );
-            foundRooms.retainAll(foundRoomsS);
+            ));
         }
+        if(!name.equals(""))
+        {
+            foundRooms.retainAll(roomDAO.findByName(name));
+        }
+        Timestamp TStart = ParseTimestamp(dates.getDate_d());
+        long hours = Long.parseLong(dates.getHours());
+        long minutes = Long.parseLong(dates.getMinutes());
+        Timestamp TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000);
+        List<Reservation> reservations = (List<Reservation>) reservationDAO.findAll();
+        List<Room> finalFoundRooms = foundRooms;
+        reservations.forEach((reservation) ->
+                {
+                    if(!(TStart.after(reservation.getEnd_date()) || TEnd.before(reservation.getStart_date()) ) && roomDAO.findById(Objects.requireNonNull(reservation.getRoom()).longValue()).isPresent())
+                    {
+                        finalFoundRooms.remove(roomDAO.findById(reservation.getRoom().longValue()).get());
+                       }
+                }
+                );
 
-        m.addAttribute("search", foundRooms );
+
+        m.addAttribute("search", finalFoundRooms );
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("reservation", new Reservation());
         m.addAttribute("room", new Room() );
-        m.addAttribute("dates", new Dates());
+        m.addAttribute("datesF", dates);
         return "reservation";
     }
 
     @PostMapping(params = "action=add")
-    public RedirectView addReservation(@ModelAttribute("Date") Dates dates, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation, RedirectAttributes attrs) throws ParseException {
-        attrs.addFlashAttribute("message", "Salle ajoutée avec succès"); // Pourquoi ?
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        java.util.Date d = sdf.parse(dates.getDate_d());
-        java.util.Date d2 = sdf.parse(dates.getDate_f());
-        String formattedTime = output.format(d);
-        String formattedTime2 = output.format(d2);
+    public RedirectView addReservation(@ModelAttribute("dates") Dates dates, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation) throws ParseException {
 
-        Timestamp T = Timestamp.valueOf(formattedTime);
-        Timestamp T2 = Timestamp.valueOf(formattedTime2);
+        Timestamp TStart = ParseTimestamp(dates.getDate_d());
+        long hours = Long.parseLong(dates.getHours());
+        long minutes = Long.parseLong(dates.getMinutes());
+        Timestamp TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000*60);
 
-
-        reservation.setStart_date(T);
-        reservation.setEnd_date(T2);
+        reservation.setStart_date(TStart);
+        reservation.setEnd_date(TEnd);
         reservationDAO.save(reservation);
         long user;
-
-        for (int j : listuser) {
-            user = j;
-            Jointure jointure = new Jointure(user);
-            jointure.setReservation(reservation.getId());
-            jointureDAO.save(jointure);
-
+        if(listuser!=null) {
+            for (int j : listuser) {
+                user = j;
+                Jointure jointure = new Jointure(user);
+                jointure.setReservation(reservation.getReservation_id());
+                jointureDAO.save(jointure);
+            }
         }
+
 
         return new RedirectView("/accueilAdmin");
     }
+
+    public Timestamp ParseTimestamp(String date) throws ParseException {
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date d = input.parse(date);
+        String formattedTime = output.format(d);
+        Timestamp T = Timestamp.valueOf(formattedTime);
+        return T;
+    }
+
+
 
 }
