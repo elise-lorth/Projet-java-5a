@@ -33,5 +33,10 @@ INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2020-
 INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2021-10-23T17:00:00', '2021-10-23T19:00:00');
 INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2021-10-23T20:00:00', '2021-10-23T21:00:00');
 INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 1, '2021-10-23T21:00:00', '2021-10-23T23:00:00');
+INSERT INTO defaultdb.reservations(room, start_date, end_date) VALUE ( 2, '2021-10-23T21:00:00', '2021-10-23T23:00:00');
+
+INSERT INTO defaultdb.jointures( user, reservation) VALUE (1, 3);
+INSERT INTO defaultdb.jointures( user, reservation) VALUE (2, 3);
+INSERT INTO defaultdb.jointures( user, reservation) VALUE (3, 2);
 
 #         screen = lits (1 pour 2)

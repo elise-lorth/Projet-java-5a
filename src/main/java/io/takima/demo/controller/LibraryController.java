@@ -57,17 +57,31 @@ public class LibraryController {
 
     @GetMapping
     public String homePage(Model m) {
+        List<Jointure> listJointures = jointureDAO.findByReservation(3);
+        List<User> membresReu = new ArrayList<>();
+        listJointures.forEach((jointure) ->  {
+            membresReu.add(userDAO.findById(jointure.getUser()).get());
+        });
+
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("rooms", roomDAO.findAll());
         m.addAttribute("meets", reservationDAO.findAll());
+        m.addAttribute("detailsMeet", membresReu);
         return "accueilPublic";
     }
 
     @GetMapping("/accueilPublic")
     public String PublicPage(Model m) {
+
+        List<Jointure> listJointures = jointureDAO.findByReservation(3);
+        List<User> membresReu = new ArrayList<>();
+        listJointures.forEach((jointure) ->  {
+            membresReu.add(userDAO.findById(jointure.getUser()).get());
+        });
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("rooms", roomDAO.findAll());
         m.addAttribute("meets", reservationDAO.findAll());
+        m.addAttribute("detailsMeet", membresReu);
         System.out.println(m.getAttribute("meets"));
         return "accueilPublic";
     }
