@@ -4,13 +4,7 @@
 <head th:insert="fragments/fragments.html :: head"></head>
 
 <body style="background-color: #e5b2cb; background-image: url('images/backgroundAccueilPublic.png');">
-<script>
-    function preferenceSalle() {
-        var salle1 = document.getElementById("mySelect").value;
-        var salle2 = document.getElementById("mySelect2").value;
-        document.getElementById("affichageSallePreferees").innerHTML = "Préférences : " + salle1 +" "+salle2;
-    }
-</script>
+
 
 <header th:insert="fragments/fragments.html :: headerAdmin"></header>
 
@@ -77,24 +71,34 @@
         </div>
 
 
+        <button id="buttonfix" type=button class="button left">Date fixe</button>
+
+        <button id="buttonflex" type=button class="button left">Date flexible</button>
+
+
  <div th:object="${dates}">
-   <h4>  Si votre date est fixée veuillez l'indiquer : </h4>
+   <div id="fix" style="display: none">
+     <h4 >  Si votre date est fixée veuillez l'indiquer : </h4>
         <label for="start_dateInput">Date de début : </label>
-        <input type="datetime-local" th:field="*{date_d}" class="form-control" id="start_dateInput" required>
+        <input type="datetime-local" th:field="*{date_d}" class="form-control" id="start_dateInput" >
 
 
-        <label> Durée </label>
-      <input type="number" th:field="*{hours}"  id="hoursInput" required> Heures
-     <input type="number" th:field="*{minutes}"  id="minutesInput" required> Minutes
 
-    <div>
+
+   </div>
+
+    <div id="flex" style="display: none">
         <h4>Si votre date est flexible, veuillez indiquer votre préférence de date de réservation :</h4>
         <input type="radio" name="preference" th:field="*{preference}"  th:value="matin" id="matin"/> <label for="matin">Le matin</label><br/>
-        <input type="radio" name="preference" th:field="*{preference}" th:value="apres-midi" id="apres-midi"/> <label for="apres-midi">L'après-midi</label><br/>
+        <input type="radio" name="preference" th:field="*{preference}" th:value="apresmidi" id="apres-midi"/> <label for="apres-midi">L'après-midi</label><br/>
         <input type="radio" name="preference" th:field="*{preference}" th:value="asap" id="asap"/> <label for="asap">Dès que possible</label><br/>
         <input type="radio" name="preference" th:field="*{preference}" th:value="semainepro" id="semainepro"/> <label for="semainepro">La semaine prochaine</label><br/>
         <input type="radio" name="preference" th:field="*{preference}" th:value="moispro" id="moispro"/> <label for="moispro">Le mois prochain</label><br/>
     </div>
+
+     <label> Durée </label>
+     <input type="number" th:field="*{hours}"  id="hoursInput" > Heures
+     <input type="number" th:field="*{minutes}"  id="minutesInput" > Minutes
 
  </div>
 
@@ -143,7 +147,7 @@
                     <th scope="col">Lits</th>
                     <th scope="col">Tablette</th>
                     <th scope="col">Packs</th>
-                    <th scope="col">Ajouter</th>
+                    <th scope="col">Choisir cette salle</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -154,7 +158,7 @@
                     <td th:text=${room.screen}></td>
                     <td th:text=${room.tablet}></td>
                     <td th:text=${room.board}></td>
-                    <td><input type="radio" th:field="*{room}" th:value="${room.room_id}"/></td>
+                    <td><input type="radio" th:field="*{room}" th:value="${room.room_id}" required/></td>
                 </tr>
                 </tbody>
             </table>
@@ -194,3 +198,35 @@
     <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
 </html>
+
+<script>
+    function preferenceSalle() {
+        var salle1 = document.getElementById("mySelect").value;
+        var salle2 = document.getElementById("mySelect2").value;
+        document.getElementById("affichageSallePreferees").innerHTML = "Préférences : " + salle1 +" "+salle2;
+    }
+
+
+    let buttonfix = document.getElementById("buttonfix");
+    console.log(buttonfix);
+    let buttonflex = document.getElementById("buttonflex");
+    let fix = document.getElementById("fix");
+    let flex = document.getElementById("flex");
+    buttonfix.addEventListener("click", () => {
+        console.log('fix click');
+        if(fix.style.display === "none"){
+            fix.style.display = "block";
+            flex.style.display = "none";
+        }
+    })
+    buttonflex.addEventListener("click", () => {
+        if(flex.style.display === "none"){
+
+            flex.style.display = "block";
+            fix.style.display = "none";
+        }
+    })
+
+
+
+</script>

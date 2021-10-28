@@ -10,17 +10,18 @@ import io.takima.demo.model.Room;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.sql.Time;
+import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequestMapping(path = "/reservation")
@@ -147,21 +148,103 @@ public class ReservationController {
         {
             foundRooms.retainAll(roomDAO.findByName(name));
         }
-        Timestamp TStart = ParseTimestamp(dates.getDate_d());
-        long hours = Long.parseLong(dates.getHours());
-        long minutes = Long.parseLong(dates.getMinutes());
-        Timestamp TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000);
-        List<Reservation> reservations = (List<Reservation>) reservationDAO.findAll();
+
+
+
+
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp TStart = Timestamp.valueOf(now);
+        Timestamp TEnd = new Timestamp(TStart.getTime());
+
+
+        if(dates.getPreference() ==null ) {
+            TStart = ParseTimestamp(dates.getDate_d());
+            long hours = Long.parseLong(dates.getHours());
+            long minutes = Long.parseLong(dates.getMinutes());
+            TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000);
+
+        } else {
+
+            Calendar calendar = Calendar.getInstance();
+            switch (dates.getPreference()) {
+
+                case "matin":
+                    if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 10) {
+                        calendar.set(Calendar.HOUR_OF_DAY,Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+2);
+
+                    } else {
+                        calendar.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+1);
+                        calendar.set(Calendar.HOUR_OF_DAY,9);
+
+                    }
+                    break;
+                case "apresmidi":
+                    if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 18) {
+                        calendar.set(Calendar.HOUR_OF_DAY,Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+2);
+
+
+                    } else {
+                        calendar.set(Calendar.HOUR_OF_DAY,17);
+                        calendar.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+1);
+
+                    }
+                    break;
+
+                case "asap":
+
+                    calendar.set(Calendar.HOUR_OF_DAY,Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+2);
+                    if(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) > 22)
+                    {
+
+                        calendar.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+1);
+                        calendar.set(Calendar.HOUR_OF_DAY,9);
+                    }
+
+                    break;
+                case "semainepro":
+
+                    calendar.set(Calendar.WEEK_OF_MONTH,Calendar.getInstance().get(Calendar.WEEK_OF_MONTH)+1);
+                    calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+                    calendar.set(Calendar.HOUR_OF_DAY,9);
+
+
+                    break;
+
+
+                case "moispro":
+
+                    calendar.set(Calendar.MONTH,Calendar.getInstance().get(Calendar.MONTH)+1);
+                    calendar.set(Calendar.DAY_OF_MONTH,1);
+                    calendar.set(Calendar.HOUR_OF_DAY,9);
+                    break;
+
+
+
+            }
+
+            TStart = new Timestamp(calendar.getTimeInMillis());
+            System.out.println(TStart);
+            long hours = Long.parseLong(dates.getHours());
+            long minutes = Long.parseLong(dates.getMinutes());
+            TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000);
+            dates.setDate_d(ReverseTimestamp(TStart));
+            System.out.println(dates.getDate_d());
+        }
+
+            List<Reservation> reservations = (List<Reservation>) reservationDAO.findAll();
+
+        Timestamp finalTStart = TStart;
         List<Room> finalFoundRooms = foundRooms;
+        Timestamp finalTEnd = TEnd;
+
         reservations.forEach((reservation) ->
                 {
-                    if(!(TStart.after(reservation.getEnd_date()) || TEnd.before(reservation.getStart_date()) ) && roomDAO.findById(Objects.requireNonNull(reservation.getRoom()).longValue()).isPresent())
+                    if(!(finalTStart.after(reservation.getEnd_date()) || finalTEnd.before(reservation.getStart_date()) ) && roomDAO.findById(Objects.requireNonNull(reservation.getRoom()).longValue()).isPresent())
                     {
                         finalFoundRooms.remove(roomDAO.findById(reservation.getRoom().longValue()).get());
                        }
                 }
                 );
-
 
         m.addAttribute("search", finalFoundRooms );
         m.addAttribute("users", userDAO.findAll());
@@ -172,7 +255,8 @@ public class ReservationController {
     }
 
     @PostMapping(params = "action=add")
-    public RedirectView addReservation(@ModelAttribute("dates") Dates dates, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation) throws ParseException {
+    public RedirectView addReservation(@ModelAttribute("datesF") Dates dates, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation) throws ParseException {
+
 
         Timestamp TStart = ParseTimestamp(dates.getDate_d());
         long hours = Long.parseLong(dates.getHours());
@@ -203,6 +287,14 @@ public class ReservationController {
         String formattedTime = output.format(d);
         Timestamp T = Timestamp.valueOf(formattedTime);
         return T;
+    }
+
+    public String ReverseTimestamp(Timestamp timestamp) throws ParseException {
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String TString = timestamp.toString();
+        java.util.Date d = output.parse(TString);
+        return input.format(d);
     }
 
 
