@@ -57,13 +57,13 @@ public class LibraryController {
 
     @GetMapping
     public String homePage(Model m) {
-        List<Jointure> listJointures = jointureDAO.findByReservation(3);
+        Iterable<Jointure> listJointures = jointureDAO.findAll();
         List<User> membresReu = new ArrayList<>();
         listJointures.forEach((jointure) ->  {
             membresReu.add(userDAO.findById(jointure.getUser()).get());
         });
 
-        m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("jointures", listJointures);
         m.addAttribute("rooms", roomDAO.findAll());
         m.addAttribute("meets", reservationDAO.findAll());
         m.addAttribute("detailsMeet", membresReu);
@@ -78,7 +78,7 @@ public class LibraryController {
         listJointures.forEach((jointure) ->  {
             membresReu.add(userDAO.findById(jointure.getUser()).get());
         });
-        m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("jointures", listJointures);
         m.addAttribute("rooms", roomDAO.findAll());
         m.addAttribute("meets", reservationDAO.findAll());
         m.addAttribute("detailsMeet", membresReu);

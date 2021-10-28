@@ -24,7 +24,7 @@
                 smeet = meet.slice(0, -1);
                 smeet = smeet.split(/=|,/);
                 if (smeet[3] == salleSelect){
-                    const el = {title: '', start: smeet[5], end: smeet[7]};
+                    const el = {title: smeet[1], start: smeet[5], end: smeet[7]};
                     meets.push(el)
                 }
 
@@ -233,17 +233,23 @@
 
 <div style="display: none" th:text="${meets}" id="baliseDb"></div>
 <div style="display: none" th:text="${detailsMeet}" id="detailsMeet"></div>
+<div style="display: none" th:text="${jointures}" id="jointures"></div>
 <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
+
+
 <script type="text/javascript">
     function GetDetails(event) {
         dbContent = document.getElementById('detailsMeet').textContent;
         c = dbContent.slice(1, -1);
         c = c.split(', U');
 
+        dbJointures = document.getElementById('jointures').textContent;
+        join = dbJointures.slice(1, -1).split(', J');
+        const sjoin = join.map(x => x.slice(0, -1).split(/=|,/));
+
         var liste = document.getElementById('listMembers');
         var len = liste.rows.length;
-        console.log(liste.rows.length);
         if (len > 1){
             for (i=1; i<len; i++) {
                 liste.deleteRow(-1);
@@ -251,26 +257,28 @@
         }
 
         for (const member of c) {
-
             smember = member.slice(0, -1);
             smember = smember.split(/=|,/);
-            console.log(smember);
-            var newRow = liste.insertRow(-1);
-            var newCell = newRow.insertCell(0);
+            for (const join of sjoin) {
+                if (join[3] == smember[1] && join[5] == event.title) {
+                    var newRow = liste.insertRow(-1);
+                    var newCell = newRow.insertCell(0);
 
-            newCell.innerHTML = smember[3];
+                    newCell.innerHTML = smember[3];
 
-            newCell = newRow.insertCell(1);
+                    newCell = newRow.insertCell(1);
 
-            newCell.innerHTML = smember[5];
+                    newCell.innerHTML = smember[5];
 
-            newCell = newRow.insertCell(2);
+                    newCell = newRow.insertCell(2);
 
-            newCell.innerHTML = smember[7];
+                    newCell.innerHTML = smember[7];
 
-            newCell = newRow.insertCell(3);
+                    newCell = newRow.insertCell(3);
 
-            newCell.innerHTML = smember[9];
+                    newCell.innerHTML = smember[9];
+                }
+            }
         }
         document.getElementById("debutReu").innerHTML = "Date de début de la réunion:" + event.start;
         document.getElementById("finReu").innerHTML = "Date de fin de la réunion:" + event.end;
