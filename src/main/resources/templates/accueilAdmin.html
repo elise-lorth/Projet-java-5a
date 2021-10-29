@@ -25,7 +25,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="room : ${rooms}">
+        <tr th:each="room : ${availablerooms}">
             <td scope="row"><img th:src=${room.icon}></td>
             <td style="vertical-align: middle;" th:text=${room.name}></td>
             <td style="vertical-align: middle;" th:text=${room.capacity}></td>
