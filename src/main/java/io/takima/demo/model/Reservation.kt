@@ -12,7 +12,7 @@ import javax.persistence.*
 
 data class Reservation(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id var id: Long?,
+    @Id var reservation_id: Long?,
     @Column(name = "room") var room: BigInteger?,
     @Column(name = "start_date")
     @DateTimeFormat(pattern="yyyy-MM-dd hh:mm:ss")
