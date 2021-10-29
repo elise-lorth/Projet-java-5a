@@ -18,7 +18,7 @@ INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE 
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('La vie en rose',6,'3','2','1','images/eiffel-tower.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Sexy beach',8,'4','2','1','images/beach.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Camping paradis',3,'2','2','1','images/camping.png');
-INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Gitaanooo ',2,'1','2','1','images/caravan.png');
+INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Teubasco',2,'1','2','1','images/caravan.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('La route de la soie',4,'2','2','1','images/desert.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('L\'amour est dans le pré',5,'2','2','1','images/farm.png');
 INSERT INTO defaultdb.rooms (name, capacity, screen, tablet, board, icon) VALUE ('Un jour j\'irais à New-York avec toi' ,9,'5','2','1','images/new-york.png');

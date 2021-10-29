@@ -8,51 +8,56 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
-<body style="background-color: #bd798f;    color: floralwhite;">
+<body style="background-color: #ffdce8; color: floralwhite; background-image: url('https://www.clemityjane.com/wp-content/uploads/2017/06/backgroundclemity.png');">
 <header>
     <img class="topleft"
-         src="images/chat-iconClemity.png"/>
-    <h1>Réunionite </h1>
+         src="https://www.clemityjane.com/wp-content/uploads/2019/08/chat-icon.png"/>
+    <h1>Ton conjoint n'en saura rien </h1>
     <div class="container">
         <a href="/accueilPublic" class="button topright">Accéder à l'espace publique</a>
     </div>
     </br>
 </header>
 
-<h2>Ajoutez un nouveau membre</h2>
+<div class="container-New">
+    <h2>Modifiez le membre</h2>
+    <a href="/accueilAdmin" class="button">Retour</a>
+</div>
 
 <div class="container">
     <form method="post" th:action="@{/editMember/{id}(id=${id})}" th:object="${user}">
         <div class="form-group">
             <h4 for="firstNameInput">Prénom</h4>
             <input type="text" th:field="*{firstName}" class="form-control" id="firstNameInput"
-                   aria-describedby="firstNameHelp" placeholder="Entrez votre prénom">
+                   aria-describedby="firstNameHelp" placeholder="Entrez votre prénom"
+                   maxlength="15" required>
             <h5 id="firstNameHelp">Entrez votre prénom ou votre surnom.</h5>
         </div>
         <div class="form-group">
             <h4 for="lastNameInput">Nom</h4>
             <input type="text" th:field="*{lastName}" class="form-control" id="lastNameInput"
-                   aria-describedby="lastNameHelp" placeholder="Entrez votre nom">
+                   aria-describedby="lastNameHelp" placeholder="Entrez votre nom"
+                   maxlength="15" required>
             <h5 id="lastNameHelp">Entrez votre nom ou votre surnom.</h5>
         </div>
         <div class="form-group">
             <h4 for="ageInput">Age</h4>
-            <input type="text" th:field="*{age}" class="form-control" id="ageInput" aria-describedby="ageHelp"
-                   placeholder="Entrez votre âge (facultatif)">
+            <input type="number" id="ageInput" aria-describedby="ageHelp" th:field="*{age}" name="quantity" min="18" max="114">
             <h5 id="ageHelp">Vous n'êtes pas obligé de donner votre âge mais nous n'acceptons que les membres
                 majeurs.</h5>
         </div>
         <div class="form-group">
             <h4 for="emailInput">Email</h4>
             <input type="text" th:field="*{email}" class="form-control" id="emailInput"
-                   aria-describedby="emailHelp" placeholder="Entrez votre mail">
+                   aria-describedby="emailHelp" placeholder="Entrez votre mail"
+                   maxlength="50" required>
             <h5 id="emailHelp">Il sera plus pratique de vous contacter avec votre mail.</h5>
         </div>
         <button type="submit" class="button right">Sauvegarder les modifications</button>
     </form>
 </div>
 
-</br></br></br></br></br></br>
+</br></br></br></br>
 <footer>
     </br>
     <h3>Copyright @2021 All rights reserved | <b>Version</b> 2.0</h3>

@@ -4,26 +4,34 @@
 <head th:insert="fragments/fragments.html :: head"></head>
 
 <body style="background-image: url('images/backgroundAccueilPublic.png');">
+
+<script>
+function myFunction() {
+  var x = document.getElementById("mySelect").value;
+  document.getElementById("affichageSalleSelectionee").innerHTML = "Affichage salle n°" + x;
+}
+</script>
+
 <header th:insert="fragments/fragments.html :: headerPublic"></header>
 
 <div class="container-New" style="justify-content: flex-start;">
-    <h4 style="padding-right: 20px;" for="room">Selectionnez la salle pour visualiser son calendrier : </h4>
-    <select style="padding-right: 5px;" id="room" name="room">
-        <option th:each="room : ${rooms}">
-            <li th:utext="${room.name}">..</li>
+    <h4 style="padding-right: 20px;" for="roomImput">Sélectionnez la salle pour visualiser son calendrier : </h4>
+    <select id="mySelect" onchange="myFunction()">
+        <option th:each="room : ${rooms}"
+                th:utext="${room.name}"
+                th:value="${room.room_id}">
         </option>
     </select>
-    <button style="margin-left: 20px;" type="submit" class="button">Afficher</button>
+</div>
+
+<div class="container" id="affichage">
+    <span style="color: rgb(54, 7, 44);font-size: 17px;" id="affichageSalleSelectionee">Affichage salle</span>
 </div>
 
 <p>Calendrier de la salle choisie</p>
-</br>
 
-<!--<div class="container">-->
-<!--    <span th:text="${message}"></span>-->
-<!--</div>-->
 
-</br></br></br></br></br></br></br></br></br>
+</br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br></br>
 <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
 
