@@ -8,7 +8,7 @@ import javax.persistence.*
 @Entity(name = "jointures")
 data class Jointure(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id var id: Long?,
+    @Id var jointure_id: Long?,
     @Column(name = "user") var user: Long?,
     @Column(name = "reservation") var reservation: Long?
 ) {
