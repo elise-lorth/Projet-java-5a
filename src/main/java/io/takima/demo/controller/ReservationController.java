@@ -282,19 +282,9 @@ public class ReservationController {
             m.addAttribute("errorMessage", "Veuillez choisir une date");
             addAttributes(m);
 
-
-
-
-<<<<<<< HEAD
-        for (int j : listuser) {
-            user = j;
-            Jointure jointure = new Jointure(user);
-            jointure.setReservation(reservation.getReservation_id());
-            jointureDAO.save(jointure);
-=======
             return "reservation";
         }
->>>>>>> AjoutCSS#3
+
 
         if(reservation.getRoom() == null) {
             m.addAttribute("errorMessage2", "Veuillez choisir une salle");

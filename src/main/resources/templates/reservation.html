@@ -3,7 +3,7 @@
 <html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head th:insert="fragments/fragments.html :: head"></head>
 
-<body style="background-color: #e5b2cb; background-image: url('images/backgroundAccueilPublic.png');">
+<body style="background-color: #e5b2cb; background-image: url('images/backgroundAccueilPublic.png'); display: flex; flex-direction: column;  justify-content: space-between; height: 100vh;">
 
 <header th:insert="fragments/fragments.html :: headerAdmin"></header>
 
@@ -153,7 +153,7 @@
                         <td th:text=${room.screen}></td>
                         <td th:text=${room.tablet}></td>
                         <td th:text=${room.board}></td>
-                        <td><input type="radio" th:field="*{room}" th:value="${room.room_id}"/></td>
+                        <td><input type="radio" th:field="*{room}" th:value="${room.room_id}" required/></td>
                     </tr>
                     </tbody>
                 </table>
@@ -200,7 +200,6 @@
         document.getElementById("affichageSallePreferees").innerHTML = "Préférences : " + salle1 + " " + salle2;
     }
 
-
     let buttonfix = document.getElementById("buttonfix");
     console.log(buttonfix);
     let buttonflex = document.getElementById("buttonflex");
@@ -220,6 +219,5 @@
             fix.style.display = "none";
         }
     })
-
 
 </script>
