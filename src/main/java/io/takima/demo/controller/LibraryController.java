@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -68,6 +69,18 @@ public class LibraryController {
     @GetMapping("/accueilAdmin")
     public String AdminPage(Model m) {
         m.addAttribute("users", userDAO.findAll());
+        List<Room> AvailableRooms = (List<Room>) roomDAO.findAll();
+        List<Reservation> reservations = (List<Reservation>) reservationDAO.findAll();
+        Timestamp TNow = Timestamp.valueOf(LocalDateTime.now());
+        reservations.forEach((reservation) ->
+                {
+                    if(TNow.after(reservation.getStart_date()) && TNow.before(reservation.getEnd_date()))
+                    {
+                        AvailableRooms.remove(roomDAO.findById(reservation.getRoom().longValue()).get());
+                    }
+                }
+        );
+        m.addAttribute("availablerooms", AvailableRooms);
         m.addAttribute("rooms", roomDAO.findAll());
         return "accueilAdmin";
     }
