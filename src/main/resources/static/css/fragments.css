@@ -79,7 +79,6 @@ img { /* image taille logo */
 
 h1 /* Titre dans le header */
 {
-
     font-size: 36px;
     color: #ffffffe0;
     position: relative;
@@ -97,15 +96,13 @@ h2 /* Titre des pages */
 
 h3 /* Dans le footer */
 {
-    font-size: 20px;
+    font-size: 18px;
     color: rgb(178, 142, 159);
-    margin-bottom: 13px;
-    padding-bottom: 10px;
-    /*text-align: center;*/
 }
 
 h4 /* Pour les labels de create-edit*/
 {
+    padding-right: 10px;
     font-size: 15px;
     color: rgb(54, 7, 44);
 }
@@ -142,6 +139,16 @@ span {
     align-items: center;
     justify-content: flex-start;
     margin-top: 10px;
+}
+
+.container-ForDroplist {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
 }
 
 .tailleImageTableau {

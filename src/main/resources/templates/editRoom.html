@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
 
 <head>
     <meta charset="UTF-8"/>
     <link rel="stylesheet" th:href="@{../css/fragments.css}" type="text/css" media="all" href="../css/fragments.css"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="https://www.clemityjane.com/wp-content/uploads/2018/11/cul.png" type="image/png">
 </head>
 
-<body style="background-color: #ffebf1; color: floralwhite; background-image: url('https://www.clemityjane.com/wp-content/uploads/2017/06/backgroundclemity.png');">
+<body style="background-color: #ffebf1; color: floralwhite; background-image: url('https://www.clemityjane.com/wp-content/uploads/2017/06/backgroundclemity.png');
+display: flex; flex-direction: column;  justify-content: space-between; height: 100vh;">
 <header>
     <img class="topleft"
          src="https://www.clemityjane.com/wp-content/uploads/2019/08/chat-icon.png"/>
@@ -25,7 +27,7 @@
     <a href="/accueilAdmin" class="button">Retour</a>
 </div>
 
-<div class="container" style="background: #ffffff94; border-radius: 12px; padding: 20px;">
+<div class="container" style="background: #ffffffcf; border-radius: 12px; padding: 20px;">
     <form method="post" th:action="@{/editRoom/{room_id}(room_id=${room_id})}" th:object="${room}">
         <div class="form-group">
             <h4 for="NameInput">Nom de la salle</h4>
@@ -104,14 +106,20 @@
             </select>
             <h5 id="iconHelp">Choississez un icone parmis ceux de la liste</h5>
         </div>
-        <button type="submit" class="button right">Sauvegarder les modifications</button>
+        <button type="submit" class="button right">Sauvegarder</button>
     </form>
 </div>
 
-</br></br></br></br>
+</br></br></br>
 <footer>
-    </br>
-    <h3>Copyright @2021 All rights reserved | <b>Version</b> 2.0</h3>
+    <div style="display: flex;flex-wrap: wrap;justify-content: flex-start;align-items: center;align-content: center;">
+        <div class="tenor-gif-embed" data-postid="16659338" data-share-method="host" data-aspect-ratio="2.35294" data-width="10%">
+            <a href="https://tenor.com/view/snl-saturday-night-live-roxbury-jim-carrey-chris-kattan-gif-16659338"></a>
+            <a href="https://tenor.com/search/snl-gifs"></a>
+        </div>
+        <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        <h3 style="margin-top: 10px; margin-left: 5px;">  Ton conjoint n'en saura rien </br>  Copyright @2021 All rights reserved | <b>Version</b> 2.0</h3>
+    </div>
 </footer>
 </body>
 

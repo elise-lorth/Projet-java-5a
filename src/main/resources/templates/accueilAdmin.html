@@ -18,9 +18,8 @@
             <th scope="col" class="tailleImageTableau"></th>
             <th scope="col">Nom</th>
             <th scope="col" style="width: 150px; !important;">Capacité</th>
-<!--            tailleEquipementTableau à finir , regarder vertical align aussi -->
             <th scope="col" class="tailleEquipementTableau">Lits</th>
-            <th scope="col" class="tailleEquipementTableau">Tablette</th>
+            <th scope="col" class="tailleEquipementTableau">Déguisements</th>
             <th scope="col" class="tailleEquipementTableau">Packs</th>
         </tr>
         </thead>
@@ -36,13 +35,14 @@
         </tbody>
     </table>
 </div>
-
 </br>
+
 <div class="container-For2">
     <h2>Liste des salles :</h2>
     <a href="/newRoom" class="button">Ajouter une nouvelle salle</a>
 </div>
 </br>
+
 <div class="container">
     <span th:text="${message_room}"></span>
 </div>
@@ -54,7 +54,7 @@
             <th scope="col">Nom</th>
             <th scope="col" class="tailleEquipementTableau">Capacité</th>
             <th scope="col" class="tailleEquipementTableau">Lits</th>
-            <th scope="col" class="tailleEquipementTableau">Tablette</th>
+            <th scope="col" class="tailleEquipementTableau">Déguisements</th>
             <th scope="col" class="tailleEquipementTableau">Packs</th>
             <th scope="col"></th>
             <th scope="col"></th>
@@ -74,13 +74,14 @@
         </tbody>
     </table>
 </div>
-
 </br>
+
 <div class="container-For2">
     <h2>Liste des membres : </h2>
     <a href="/newMember" class="button">Ajouter un nouveau membre</a>
 </div>
 </br>
+
 <div class="container">
     <span th:text="${message}"></span>
 </div>
