@@ -10,12 +10,10 @@ body /* Change la police de tout le body */
 
 header {
     background-color: #4f082e;
-    color: #e5b2cb;
 }
 
 footer {
     background-color: #4f082e;
-    color: #e5b2cb;
 }
 
 /* Pour définir les positions, inscrire comme class="button right" */
@@ -81,32 +79,30 @@ img { /* image taille logo */
 
 h1 /* Titre dans le header */
 {
-    /*font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;*/
     font-size: 36px;
-    color: rgb(203, 174, 181);
+    color: #ffffffe0;
     position: relative;
-    left: 75px;
+    left: 82px;
     top: 17px;
     bottom: 17px;
 }
 
 h2 /* Titre des pages */
 {
-    font-size: 24px;
+    padding-left: 40px;
+    font-size: 25px;
     color: #4f082e;
 }
 
 h3 /* Dans le footer */
 {
-    font-size: 20px;
+    font-size: 18px;
     color: rgb(178, 142, 159);
-    margin-bottom: 13px;
-    padding-bottom: 10px;
-    /*text-align: center;*/
 }
 
 h4 /* Pour les labels de create-edit*/
 {
+    padding-right: 10px;
     font-size: 15px;
     color: rgb(54, 7, 44);
 }
@@ -123,8 +119,13 @@ p /* Paragraphes */
     font-size: 20px;
 }
 
+span {
+    color: rgb(54, 7, 44);
+    font-size: 19px;
+}
+
 /*Organisation des items dans des containers*/
-.container-New {
+.container-For2 {
     width: 97%;
     display: flex;
     align-items: center;
@@ -140,6 +141,20 @@ p /* Paragraphes */
     margin-top: 10px;
 }
 
+.container-ForDroplist {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 10px;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+}
+
 .tailleImageTableau {
-    width: 80px;
+    width: 90px; !important;
+}
+
+.tailleEquipementTableau {
+    width: 120px; !important;
 }

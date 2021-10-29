@@ -18,4 +18,5 @@ public interface JointureDAO extends CrudRepository<Jointure, Long> {
 //    @Query("SELECT * FROM jointures JOIN reservations ON reservation=reservation_id WHERE reservation= :id_resa")
 //    Integer GetMembresReu(@Param("id_resa") BigInteger id_resa);
 
+
 }

@@ -16,5 +16,6 @@ List<Room> findByCapacityGreaterThanEqual(int capacity);
 List<Room> findByBoardGreaterThanEqual(int board);
 List<Room> findByScreenGreaterThanEqual(int screen);
 List<Room> findByTabletGreaterThanEqual(int tablet);
+List<Room> findByName(String name);
 
 }

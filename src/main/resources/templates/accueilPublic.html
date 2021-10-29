@@ -110,7 +110,7 @@
 
 </head>
 
-<body style="background-image: url('images/backgroundAccueilPublic.png');">
+<body style="background-image: url('images/backgroundCalendrier.png');">
 
 <script>
     function myFunction() {
@@ -121,8 +121,8 @@
 
 <header th:insert="fragments/fragments.html :: headerPublic"></header>
 
-<div class="container-New" style="justify-content: flex-start;">
-    <h4 style="padding-right: 20px;" for="roomImput">Sélectionnez la salle pour visualiser son calendrier : </h4>
+<div class="container-For3">
+    <h2 style="padding-right: 20px;" for="roomImput">Sélectionnez la salle pour visualiser son calendrier : </h2>
     <select id="mySelect" onchange="myFunction()">
         <option th:each="room : ${rooms}"
                 th:utext="${room.name}"
@@ -132,13 +132,21 @@
 </div>
 
 <div class="container" id="affichage">
-    <span style="color: rgb(54, 7, 44);font-size: 17px;" id="affichageSalleSelectionee">Affichage salle</span>
+    <span id="affichageSalleSelectionee">Affichage salle</span>
 </div>
 
 <p>Calendrier de la salle choisie</p>
+<<<<<<< HEAD
 <div id='calendar'></div>
 </br>
 <div style="display: none" th:text="${meets}" id="baliseDb"></div>
+=======
+
+<!--<div class="tenor-gif-embed" data-postid="16659338" data-share-method="host" data-aspect-ratio="2.35294" data-width="50%"><a href="https://tenor.com/view/snl-saturday-night-live-roxbury-jim-carrey-chris-kattan-gif-16659338">Snl Saturday Night Live GIF</a>from <a href="https://tenor.com/search/snl-gifs">Snl GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>-->
+<!--<div class="tenor-gif-embed" data-postid="20372145" data-share-method="host" data-aspect-ratio="2.31884" data-width="50%"><a href="https://tenor.com/view/what-is-love-twice-gif-20372145">What Is GIF</a>from <a href="https://tenor.com/search/what-gifs">What GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>-->
+<!--<div class="tenor-gif-embed" data-postid="9282211" data-share-method="host" data-aspect-ratio="1.69" data-width="50%"><a href="https://tenor.com/view/had-away-what-is-love-gif-9282211">Had Away What Is Love GIF</a>from <a href="https://tenor.com/search/had+away-gifs">Had Away GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>-->
+
+>>>>>>> AjoutCSS#3
 <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
 

@@ -8,12 +8,12 @@
 <body style="background-image: url('images/backgroundAccueilAdmin.png'); background-color: #e5b2cb;">
 <header th:insert="fragments/fragments.html :: headerAdmin"></header>
 
-<div class="container-New">
+<div class="container-For2">
     <h2>Ajoutez une nouvelle salle</h2>
     <a href="/accueilAdmin" class="button">Retour</a>
 </div>
 
-<div class="container">
+<div class="container" style="background: #ffffff94; border-radius: 12px; padding: 20px;">
     <form method="post" th:action="@{/newRoom}" th:object="${room}">
         <div class="form-group">
             <h4 for="NameInput">Nom de la salle</h4>
@@ -96,7 +96,7 @@
     </form>
 </div>
 
-</br></br></br></br>
+</br></br></br>
 <footer th:insert="fragments/fragments.html :: footer"></footer>
 </body>
 

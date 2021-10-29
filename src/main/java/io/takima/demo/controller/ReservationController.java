@@ -10,13 +10,18 @@ import io.takima.demo.model.Room;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.math.BigInteger;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Controller
 @RequestMapping(path = "/reservation")
@@ -34,14 +39,14 @@ public class ReservationController {
         this.jointureDAO = jointureDAO;
     }
 
-    public static class Dates{
+    public static class Dates{ // Classe pour récuperer les dates au format String dans le html
         Long id;
         String date_d;
-        String date_f;
+        String hours;
+        String minutes;
+        String preference;
 
-        public Dates() {
-
-        }
+        public Dates() {}
 
         public Long getId() {
             return id;
@@ -59,23 +64,38 @@ public class ReservationController {
             this.date_d = date_d;
         }
 
-        public String getDate_f() {
-            return date_f;
+        public String getHours() {
+            return hours;
         }
 
-        public void setDate_f(String date_f) {
-            this.date_f = date_f;
+        public void setHours(String hours) {
+            this.hours = hours;
+        }
+
+        public String getMinutes() {
+            return minutes;
+        }
+
+        public void setMinutes(String minutes) {
+            this.minutes = minutes;
+        }
+
+        public String getPreference() {
+            return preference;
+        }
+
+        public void setPreference(String preference) {
+            this.preference = preference;
         }
     }
 
 
     @GetMapping()
     public String showRooms(Model m) {
-        m.addAttribute("reservation", new Reservation());
-        m.addAttribute("room", new Room() );
-        m.addAttribute("dates", new Dates());
-        m.addAttribute("users", userDAO.findAll());
 
+        m.addAttribute("errorMessage");
+        m.addAttribute("errorMessage2");
+        addAttributes(m);
         return "reservation";
     }
 
@@ -84,8 +104,11 @@ public class ReservationController {
                             String capacity,
                             String board,
                             String screen,
-                            String tablet)
-    {
+                            String tablet,
+                             String name,
+                             @ModelAttribute("dates") Dates dates) throws ParseException {
+        m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("rooms", roomDAO.findAll());
         List<Room> foundRooms = (List<Room>) roomDAO.findAll();
         if(!capacity.equals("0"))
         {
@@ -98,75 +121,233 @@ public class ReservationController {
         if(!board.equals("0"))
         {
             int boardi = Integer.parseInt(board);
-            List<Room> foundRoomsB = roomDAO.findByBoardGreaterThanEqual(
+            foundRooms.retainAll(roomDAO.findByBoardGreaterThanEqual(
                     boardi
-            );
-            foundRooms.retainAll(foundRoomsB);
+            ));
         }
 
         if(!tablet.equals("0"))
         {
             int tableti = Integer.parseInt(tablet);
-            List<Room> foundRoomsT = roomDAO.findByTabletGreaterThanEqual(
+
+            foundRooms.retainAll(roomDAO.findByTabletGreaterThanEqual(
                     tableti
-            );
-            foundRooms.retainAll(foundRoomsT);
+            ));
         }
 
         if(!screen.equals("0"))
         {
             int screeni = Integer.parseInt(screen);
-            List<Room> foundRoomsS = roomDAO.findByScreenGreaterThanEqual(
+            foundRooms.retainAll(roomDAO.findByScreenGreaterThanEqual(
                     screeni
-            );
-            foundRooms.retainAll(foundRoomsS);
+            ));
+        }
+        if(!name.equals(""))
+        {
+            foundRooms.retainAll(roomDAO.findByName(name));
         }
 
 
-        m.addAttribute("search", foundRooms );
+
+
+        LocalDateTime now = LocalDateTime.now();
+        Timestamp TStart = Timestamp.valueOf(now);
+        Timestamp TEnd = new Timestamp(TStart.getTime());
+
+
+        if(dates.getPreference() ==null ) {
+
+            try {
+                TStart = ParseTimestamp(dates.getDate_d());
+            } catch (Exception E) {
+                m.addAttribute("errorMessage", "Veuillez choisir une date");
+                addAttributes(m);
+
+                return "reservation";
+            }
+            long hours = Long.parseLong(dates.getHours());
+            long minutes = Long.parseLong(dates.getMinutes());
+            TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000 *60);
+
+        } else {
+
+            Calendar calendar = Calendar.getInstance();
+            switch (dates.getPreference()) {
+
+                case "matin":
+                    if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 10) {
+                        calendar.set(Calendar.HOUR_OF_DAY,Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+2);
+
+                    } else {
+                        calendar.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+1);
+                        calendar.set(Calendar.HOUR_OF_DAY,9);
+
+                    }
+                    break;
+                case "apresmidi":
+                    if (Calendar.getInstance().get(Calendar.HOUR_OF_DAY) < 18) {
+                        calendar.set(Calendar.HOUR_OF_DAY,Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+2);
+
+
+                    } else {
+                        calendar.set(Calendar.HOUR_OF_DAY,17);
+                        calendar.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+1);
+
+                    }
+                    break;
+
+                case "asap":
+
+                    calendar.set(Calendar.HOUR_OF_DAY,Calendar.getInstance().get(Calendar.HOUR_OF_DAY)+2);
+                    if(Calendar.getInstance().get(Calendar.HOUR_OF_DAY) > 22)
+                    {
+
+                        calendar.set(Calendar.DAY_OF_MONTH,Calendar.getInstance().get(Calendar.DAY_OF_MONTH)+1);
+                        calendar.set(Calendar.HOUR_OF_DAY,9);
+                    }
+
+                    break;
+                case "semainepro":
+
+                    calendar.set(Calendar.WEEK_OF_MONTH,Calendar.getInstance().get(Calendar.WEEK_OF_MONTH)+1);
+                    calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
+                    calendar.set(Calendar.HOUR_OF_DAY,9);
+
+
+                    break;
+
+
+                case "moispro":
+
+                    calendar.set(Calendar.MONTH,Calendar.getInstance().get(Calendar.MONTH)+1);
+                    calendar.set(Calendar.DAY_OF_MONTH,1);
+                    calendar.set(Calendar.HOUR_OF_DAY,9);
+                    break;
+
+                case "":
+                    m.addAttribute("errorMessage", "Veuillez choisir une date");
+                    addAttributes(m);
+
+                    return "reservation";
+
+
+
+
+            }
+
+            TStart = new Timestamp(calendar.getTimeInMillis());
+            long hours = Long.parseLong(dates.getHours());
+            long minutes = Long.parseLong(dates.getMinutes());
+            TEnd = new Timestamp(TStart.getTime() + (hours*60 + minutes)*1000 *60);
+            dates.setDate_d(ReverseTimestamp(TStart));
+        }
+
+            List<Reservation> reservations = (List<Reservation>) reservationDAO.findAll();
+
+        Timestamp finalTStart = TStart;
+        List<Room> finalFoundRooms = foundRooms;
+        Timestamp finalTEnd = TEnd;
+
+        reservations.forEach((reservation) ->
+                {
+                    if((!(finalTStart.after(reservation.getEnd_date()) || finalTEnd.before(reservation.getStart_date()) ) || (finalTStart.before(reservation.getStart_date()) && finalTEnd.after(reservation.getEnd_date())) ))
+                    {
+                        finalFoundRooms.remove(roomDAO.findById(reservation.getRoom().longValue()).get());
+                       }
+                }
+                );
+        if(finalFoundRooms.isEmpty()) {
+            m.addAttribute("errorMessage3", "Aucune salle libre, veuillez changer les conditions");
+            addAttributes(m);
+
+            return "reservation";
+        }
+
+        m.addAttribute("search", finalFoundRooms );
         m.addAttribute("users", userDAO.findAll());
         m.addAttribute("reservation", new Reservation());
         m.addAttribute("room", new Room() );
-        m.addAttribute("dates", new Dates());
+        m.addAttribute("datesF", dates);
         return "reservation";
     }
 
-
-
     @PostMapping(params = "action=add")
-    public RedirectView addReservation(@ModelAttribute("Date") Dates dates, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation, RedirectAttributes attrs) throws ParseException {
-        attrs.addFlashAttribute("message", "Salle ajoutée avec succès");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
-        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        java.util.Date d = sdf.parse(dates.getDate_d());
-        java.util.Date d2 = sdf.parse(dates.getDate_f());
-        String formattedTime = output.format(d);
-        String formattedTime2 = output.format(d2);
-
-        Timestamp T = Timestamp.valueOf(formattedTime);
-        Timestamp T2 = Timestamp.valueOf(formattedTime2);
+    public String addReservation(@ModelAttribute("datesF") Dates dates,Model m, @RequestParam(value = "listuser" , required = false) int[] listuser , Reservation reservation) throws ParseException {
 
 
-        reservation.setStart_date(T);
-        reservation.setEnd_date(T2);
-        reservationDAO.save(reservation);
-        long user;
+        Timestamp TStart;
+        try {
+            TStart = ParseTimestamp(dates.getDate_d());
+        } catch (Exception E) {
+            m.addAttribute("errorMessage", "Veuillez choisir une date");
+            addAttributes(m);
 
+
+
+
+<<<<<<< HEAD
         for (int j : listuser) {
             user = j;
             Jointure jointure = new Jointure(user);
             jointure.setReservation(reservation.getReservation_id());
             jointureDAO.save(jointure);
+=======
+            return "reservation";
+        }
+>>>>>>> AjoutCSS#3
 
+        if(reservation.getRoom() == null) {
+            m.addAttribute("errorMessage2", "Veuillez choisir une salle");
+            addAttributes(m);
+            return "reservation";
         }
 
-        return new RedirectView("/accueilAdmin");
+
+        long hours = Long.parseLong(dates.getHours());
+        long minutes = Long.parseLong(dates.getMinutes());
+        Timestamp TEnd = new Timestamp(TStart.getTime() + (hours * 60 + minutes) * 1000 * 60);
+
+        reservation.setStart_date(TStart);
+        reservation.setEnd_date(TEnd);
+        reservationDAO.save(reservation);
+        long user;
+        if (listuser != null) {
+            for (int j : listuser) {
+                user = j;
+                Jointure jointure = new Jointure(user);
+                jointure.setReservation(reservation.getReservation_id());
+                jointureDAO.save(jointure);
+            }
+        }
+
+
+        return "accueilAdmin";
     }
 
+    public Timestamp ParseTimestamp(String date) throws ParseException {
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        java.util.Date d = input.parse(date);
+        String formattedTime = output.format(d);
+        Timestamp T = Timestamp.valueOf(formattedTime);
+        return T;
+    }
 
+    public String ReverseTimestamp(Timestamp timestamp) throws ParseException {
+        SimpleDateFormat input = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm");
+        SimpleDateFormat output = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String TString = timestamp.toString();
+        java.util.Date d = output.parse(TString);
+        return input.format(d);
+    }
 
-
-
+    public void addAttributes(Model m) {
+        m.addAttribute("reservation", new Reservation());
+        m.addAttribute("room", new Room() );
+        m.addAttribute("users", userDAO.findAll());
+        m.addAttribute("rooms", roomDAO.findAll());
+        m.addAttribute("dates", new Dates());
+    }
 
 
 
