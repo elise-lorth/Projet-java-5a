@@ -65,7 +65,7 @@ public class LibraryController {
         m.addAttribute("jointures", listJointures);
         m.addAttribute("rooms", roomDAO.findAll());
         m.addAttribute("meets", reservationDAO.findAll());
-        m.addAttribute("detailsMeet", membresReu);
+        m.addAttribute("detailsMeet", userDAO.findAll());
         return "accueilPublic";
     }
 
@@ -80,7 +80,7 @@ public class LibraryController {
         m.addAttribute("jointures", listJointures);
         m.addAttribute("rooms", roomDAO.findAll());
         m.addAttribute("meets", reservationDAO.findAll());
-        m.addAttribute("detailsMeet", membresReu);
+        m.addAttribute("detailsMeet", userDAO.findAll());
         System.out.println(m.getAttribute("meets"));
         return "accueilPublic";
     }

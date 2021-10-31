@@ -9,7 +9,7 @@
     <script type="text/javascript" th:src="@{/js/locales-all.js}"></script>
     <script type="text/javascript">
 
-        document.addEventListener('DOMContentLoaded', function  () {
+        document.addEventListener('DOMContentLoaded', function () {
             dbContent = document.getElementById('baliseDb').textContent;
             c = dbContent.slice(1, -1);
             c = c.split(', R');
@@ -23,8 +23,8 @@
             for (const meet of c) {
                 smeet = meet.slice(0, -1);
                 smeet = smeet.split(/=|,/);
-                if (smeet[3] == salleSelect){
-                    const el = {title: smeet[1], start: smeet[5], end: smeet[7]};
+                if (smeet[3] == salleSelect) {
+                    const el = {title: "- n°" + smeet[1], start: smeet[5], end: smeet[7]};
                     meets.push(el)
                 }
 
@@ -80,9 +80,7 @@
                     calendar.setOption('locale', this.value);
                 }
             });
-
         });
-
 
     </script>
     <style>
@@ -110,15 +108,18 @@
         }
 
     </style>
-
+    <audio autoplay loop th:src="@{/sound/Haddaway_What is Love.mp3}"></audio>
 </head>
 
 <body style="background-image: url('images/backgroundCalendrier.png');">
 
 <script>
     function myFunction() {
-        var x = document.getElementById("mySelect").value;
-        document.getElementById("affichageSalleSelectionee").innerHTML = "Affichage salle n°" + x;
+        // var numSalle = document.getElementById("mySelect").value;
+        // document.getElementById("affichageSalleSelectionee").innerHTML = "Affichage salle n°" + numSalle;
+        // console.log(numSalle.icon);
+        // document.getElementById("affichageSalleSelectionee").src = numSalle.icon;
+
         dbContent = document.getElementById('baliseDb').textContent;
         c = dbContent.slice(1, -1);
         c = c.split(', R');
@@ -132,11 +133,10 @@
         for (const meet of c) {
             smeet = meet.slice(0, -1);
             smeet = smeet.split(/=|,/);
-            if (smeet[3] == salleSelect){
-                const el = {title: '', start: smeet[5], end: smeet[7]};
+            if (smeet[3] == salleSelect) {
+                const el = {title: "- n°" + smeet[1], start: smeet[5], end: smeet[7]};
                 meets.push(el)
             }
-
         }
 
         var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -206,30 +206,27 @@
 </div>
 
 <div class="container" id="affichage">
-    <span id="affichageSalleSelectionee">Affichage salle</span>
+    <img id="affichageSalleSelectionee"></img>
+
 </div>
 
-<p>Calendrier de la salle choisie</p>
 
 <div id='calendar'></div>
-</br>
-<p>Détails de la réunion:</p>
-<div>
-    <p id="debutReu">Date de début de la réunion:</p>
-    <p id="finReu">Date de fin de la réunion:</p>
-    <p>Listes des participants:</p>
-    <table id="listMembers">
+<div style="background: #ffffffcf; border-radius: 12px; padding: 20px; margin: 50px auto; max-width: 1500px;">
+    <h2>Détails de la réunion:</h2>
+    <h4 id="debutReu">Date de début de la réunion:</h4>
+    <h4 id="finReu">Date de fin de la réunion:</h4>
+    <h4>Listes des participants:</h4>
+    <table id="listMembers" class="table table-striped table-dark table-hover"
+           style="background-color: #57243e !important;">
         <tr>
             <td>Prénom</td>
             <td>Nom</td>
             <td>Age</td>
             <td>Email</td>
         </tr>
-
     </table>
-
 </div>
-
 
 
 <div style="display: none" th:text="${meets}" id="baliseDb"></div>
@@ -251,8 +248,8 @@
 
         var liste = document.getElementById('listMembers');
         var len = liste.rows.length;
-        if (len > 1){
-            for (i=1; i<len; i++) {
+        if (len > 1) {
+            for (i = 1; i < len; i++) {
                 liste.deleteRow(-1);
             }
         }
@@ -261,7 +258,8 @@
             smember = member.slice(0, -1);
             smember = smember.split(/=|,/);
             for (const join of sjoin) {
-                if (join[3] == smember[1] && join[5] == event.title) {
+
+                if (join[3] == smember[1] && join[5] == event.title.slice(4)) {
                     var newRow = liste.insertRow(-1);
                     var newCell = newRow.insertCell(0);
 
@@ -283,7 +281,6 @@
         }
         document.getElementById("debutReu").innerHTML = "Date de début de la réunion:" + event.start;
         document.getElementById("finReu").innerHTML = "Date de fin de la réunion:" + event.end;
-
     }
 
 </script>

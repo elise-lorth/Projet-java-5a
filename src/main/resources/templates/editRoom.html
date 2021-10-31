@@ -54,37 +54,41 @@ display: flex; flex-direction: column;  justify-content: space-between; height: 
                 recevoir, ce nombre ne pourra pas être dépassé.</h5>
         </div>
         <div class="form-group">
-            <h4 for="screenInput">Écran</h4>
+            <h4 for="screenInput">Nombre de lits</h4>
             <select name="screenBolean" id="screenInput" th:field="*{screen}">
-                <option value="0">Non</option>
-                <option value="1">Oui, 1</option>
-                <option value="2">Oui, 2</option>
-                <option value="3">Oui, 3</option>
+                <option value="0">Aucun</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
-            <h5 id="screenHelp">La salle possède-t'elle un écran ?</h5>
+            <h5 id="screenHelp">Combien de lits possède-t-elle ? </h5>
         </div>
         <div class="form-group">
-            <h4 for="tabletInput">Tablette tactile</h4>
+            <h4 for="tabletInput">Lots de déguisements</h4>
             <select name="tabletBolean" id="tabletInput" th:field="*{tablet}">
-                <option value="0">Non</option>
-                <option value="1">Oui, 1</option>
-                <option value="2">Oui, 2</option>
-                <option value="3">Oui, 3</option>
+                <option value="0">Aucun</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
             </select>
-            <h5 id="tabletHelp">La salle possède-t'elle une tablette tactile ?</h5>
+            <h5 id="tabletHelp">Combien de déguisements sont disponibles dans cette salle ?</h5>
         </div>
         <div class="form-group">
-            <h4 for="boardInput">Tableau</h4>
+            <h4 for="boardInput">Packs de jouets</h4>
             <select name="boardBolean" id="boardInput" th:field="*{board}">
-                <option value="0">Non</option>
-                <option value="1">Oui, 1</option>
-                <option value="2">Oui, 2</option>
-                <option value="3">Oui, 3</option>
+                <option value="0">Aucun</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
             </select>
-            <h5 id="boardHelp">La salle possède-t'elle un tableau ?</h5>
+            <h5 id="boardHelp">Combien de packs de jouets sont disponible ?</h5>
         </div>
         <div class="form-group">
-            <h4 for="iconInput">Icone</h4>
+            <h4 for="iconInput">Icône</h4>
             <select name="iconBolean" id="iconInput" th:field="*{icon}">
                 <option value="images/coliseum.png">Le colisée et Rome</option>
                 <option value="images/eiffel-tower.png">La tour Eiffel et Paris</option>
