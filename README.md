@@ -1,77 +1,33 @@
-# Projet-java-5a
+# What is love hotel
 
-Faire invitation par mail
-faire les backgrounds, finir réservation, changer couleur calendrier.
-Mettre limitations et required sur la page réservation
+Bienvenue sur notre interface de gestion et réservation de chambres.
 
-Réservation de rooms de réunion
+Le what is love hotel est heureux de vous proposer des chambres variées et en libre accès 24/24,  7/7.
+
+Comment lancer l'interface ?
 ===========
-L'objectif de ce projet est de créer une application de réservation de rooms. 
-# Le projet 
-Vous devez créer à la fois une section `publique` et une section `administration`.
-N'importe quel utilisateur doit pouvoir réserver une room pour une durée spécifique à la date et l'heure qu'il veut, ou bien dès que la room est disponible. (`En cours Aurelien`)
-Chaque room de réunion a un dashboard où tout le monde peut voir les disponibilités et réserver la room (on peut imaginer placer une tablette devant chaque room avec ce dashboard). (`En cours Thomas`)
 
-En particulier, les fonctionnalités suivantes seront requises :
+* Entrez dans l’invite de commande la ligne suivante :
+`git clone https://github.com/elise-lorth/Projet-java-5a "What_is_love_hotel"` 
 
-**Panneau d'administration:**
-  * Créer et éditer un membre: nom, e-mail, date de naissance, id (`Fait`)
-  * Créer et éditer une room : nom, photo, capacité (X personnes), équipement (écran, tableau, ...), id (`Fait`)
-  * Réserver une room à une date et heure spécifique avec des contraintes (`Manque date et heure`)
-  * Voir quelles rooms sont libres (`Pas fait`)
-  * Inviter des membres à la room de réunion (`Fait`)
-  * Envoyer des e-mails aux membres invités (avec une carte ICS pouvant être lier à un calendrier) (`à regarder si on le fait ?`)
+* Ouvrez docker desktop puis entrez ces deux lignes dans l'invite de commande :
+`cd What_is_love_hotel`
+`docker run --name mariadb --rm -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=defaultdb -p 3306:3306 -v "%cd%/initdb:/docker-entrypoint-initdb.d" mariadb`
 
-**Partie publique:**
-  * Voir le calendrier d'une room de réunion (`En cours`)
-  * Voir les membres d'une réunion (`Pas fait`)
-  * Réserver une room (`Fait`)
+* Ouvrez un IDE pour lancer l’application.
 
-Un **membre** peut être édité. Il a un nom, un email, une date de naissance. Chaque utilisateur a un identifiant unique (uuid). (`Fait`)
+* Si la base de donnée n’est pas configurée, créez dans l’IDE une database avec comme source mariaDB, host : localhost ; Port : 3306 ; User : root ; Password : toor ; Database : defaultdb, vérifiez que l’url est jdbc:mariadb://localhost:3306/defaultdb.
+* Si elle ne se lance pas lancez manuellement les fichiers 1_TABLES et 2_DEFAULT_ENTRIES.
+* Rendez-vous sur http://localhost:8080/
 
-Une **room de réunion** a un nom, une photo, une capacité et un identifiant unique. Elle peut avoir plus d'attributs ;). (`Fait`)
+#Comment utiliser l’interface ?
+* Avant de lancer le site nous vous conseillons de baisser un peu le volume de votre ordinateur.
+* Sur l’**accueil publique** vous aurez la possibilité de voir les calendriers de chaque chambre. Sélectionnez une chambre dans la liste et naviguez dans son calendrier. En cliquant sur « mois », « semaine », « jour » et « planning » vous pourrez changer le mode d'affichage. Vous pourrez visualiser les informations de chaque réservation en cliquant dessus. 
+* Sur l’**accueil administrateur**, vous pourrez voir toutes les salles disponibles à l’instant, toutes les salles de notre hôtel, et tous les clients. Il vous est possible d’ajouter de nouvelles salles et de nouveau membre, ainsi que de supprimer ou modifier ceux existants.
+Vous pourrez aussi effectuer une réservation en remplissant un formulaire.
+* Le formulaire de **réservation** permet de créer des reservations en suivant 2 étapes :
+Dans un premier temps vous devez choisir les paramètres de la salle que vous voulez afin d'avoir une liste des salles remplissant les bonnes conditions.
+Vous devez aussi choisir la date (fixe ou flexible) à laquelle vous voulez réserver la salle ainsi que la durée de la reservation, ce qui permet de trouver les salles libres à cette date.
+Enfin après avoir recherché et choisi votre salle, vous pouvez inviter des membres à votre reservations et enfin la créer en cliquant sur Valider.
 
-Vous devrez implémenter un ensemble de règles de réservation et de contraintes pour réserver une room comme : 
- - J'ai besoin d'un room pour X personnes (`Fait`)
- - J'en ai besoin pour Y heures et Z minutes (`?`)
- - J'ai besoin d'une télévision pour afficher mes diapos (`Fait`)
- - J'ai besoin d'un tableau (`Fait`)
- - De préférence le matin (`Fait, fonctionnel ?`)
- - Dès que possible / la semaine prochaine / le mois prochain (`Fait, fonctionnel ?`)
- - De préférence dans la room 1 / room 1 ou 3 (`Fait, fonctionnel ?`)
-
-Certaines contraintes ou combinaisons de contraintes ne seront pas possible, il faudra en informer l'utilisateur et proposer une meilleur solution ou une alternative... (`Fait ?`)
-
-Vous n'avez pas à implémenter la sécurité comme la connexion ou le compte utilisateur pour le moment.
-
-# Bonus (`Pas fait`)
-Vous avez déjà **tout terminé** ?
-Voici quelques features qui rendront votre plateforme encore plus attrayante :
-
- * Faire un lien avec Google Calendar
- * Ajouter un moteur de recommandations dans le cas où une room n'est pas disponible
- * Envoyer des rappels de réunion par e-mail 
- * Implémenter les tests de votre backend. 
-
-
-
-# Training Spring Boot
-=====
-
-1. Importer le projet dans IntelliJ IDEA en important le fichier "pom.xml" à la racine de ce répertoire
-
-2. Exécuter votre DB mysql. Si vous avez docker, vous pouvez utiliser la commande suivante:
-```
-docker run --name mariadb --rm -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=defaultdb -p 3306:3306 -v "`pwd`/initdb:/docker-entrypoint-initdb.d" mariadb
-
-si ça marche pas : 
-
-docker run --name mariadb --rm -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=defaultdb -p 3306:3306 -v "%cd%/initdb:/docker-entrypoint-initdb.d" mariadb
-
-```
-
-3. Si vous n'avez pas Docker, et que vous avez un serveur MariaDB custom, vérifiez bien que vos utilisateurs / mdp sont les bons par rapport au fichier de configuration (src/main/resources/application.properties), et exécutez les scripts présents dans le dossier `initdb`
-
-4. Tous les scripts sql contenus dans le dossier initdb seront exécutés automatiquement lors du premier chargement de la DB.
-
-5. Lancez l'application via IntelliJ, et vérifiez qu'elle fonctionne sur http://localhost:8080 (par défaut)
+Nous espérons pouvoir vous compter bientôt parmi nos utilisateurs réguliers.
