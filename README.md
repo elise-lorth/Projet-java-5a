@@ -11,7 +11,7 @@ Comment lancer l'interface ?
 `git clone https://github.com/elise-lorth/Projet-java-5a "What_is_love_hotel"` 
 
 * Ouvrez docker desktop puis entrez ces deux lignes dans l'invite de commande :
-`cd What_is_love_hotel`
+`cd What_is_love_hotel`    
 `docker run --name mariadb --rm -e MYSQL_ROOT_PASSWORD=toor -e MYSQL_DATABASE=defaultdb -p 3306:3306 -v "%cd%/initdb:/docker-entrypoint-initdb.d" mariadb`
 
 * Ouvrez un IDE pour lancer l’application.
@@ -20,7 +20,8 @@ Comment lancer l'interface ?
 * Si elle ne se lance pas lancez manuellement les fichiers 1_TABLES et 2_DEFAULT_ENTRIES.
 * Rendez-vous sur http://localhost:8080/
 
-#Comment utiliser l’interface ?
+Comment utiliser l’interface ?
+===========
 * Avant de lancer le site nous vous conseillons de baisser un peu le volume de votre ordinateur.
 * Sur l’**accueil publique** vous aurez la possibilité de voir les calendriers de chaque chambre. Sélectionnez une chambre dans la liste et naviguez dans son calendrier. En cliquant sur « mois », « semaine », « jour » et « planning » vous pourrez changer le mode d'affichage. Vous pourrez visualiser les informations de chaque réservation en cliquant dessus. 
 * Sur l’**accueil administrateur**, vous pourrez voir toutes les salles disponibles à l’instant, toutes les salles de notre hôtel, et tous les clients. Il vous est possible d’ajouter de nouvelles salles et de nouveau membre, ainsi que de supprimer ou modifier ceux existants.
